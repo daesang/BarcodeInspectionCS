@@ -64,6 +64,9 @@ namespace BarcodeInspection
                             case CommonTopButton.SAVE:
                                 await (frmChild as ITopButton).Save();
                                 break;
+                            case CommonTopButton.CONFIRM:
+                                await (frmChild as ITopButton).Confirm();
+                                break;
                             case CommonTopButton.DOWNLAOD:
                                 (frmChild as ITopButton).Download();
                                 break;
@@ -147,29 +150,33 @@ namespace BarcodeInspection
                         e.Handled = true;
                         toolStripBtnSearch.PerformClick();
                         break;
-                    case Keys.F3: //Clear
+                    case Keys.F3: //Save
                         e.Handled = true;
-                        toolStripBtnClear.PerformClick();
+                        toolStripBtnConfirm.PerformClick();
                         break;
-                    case Keys.F4: //Close
-                        e.Handled = true;
-                        toolStripBtnClose.PerformClick();
-                        break;
-                    case Keys.F8: //Print
-                        e.Handled = true;
-                        toolStripBtnPrint.PerformClick();
-                        break;
-                    case Keys.F9: //Download
+                    case Keys.F5: //Download
                         e.Handled = true;
                         toolStripBtnDownload.PerformClick();
                         break;
-                    case Keys.F7: //Upload
+                    case Keys.F6: //Upload
                         e.Handled = true;
                         toolStripBtnUpload.PerformClick();
                         break;
-                    case Keys.F12: //Save
+                    case Keys.F7: //Print
                         e.Handled = true;
-                        toolStripBtnSave.PerformClick();
+                        toolStripBtnPrint.PerformClick();
+                        break;
+                    case Keys.F8: //Clear
+                        e.Handled = true;
+                        toolStripBtnClear.PerformClick();
+                        break;
+                    case Keys.F9: //Close
+                        e.Handled = true;
+                        toolStripBtnClose.PerformClick();
+                        break;
+                    case Keys.F12: //Confirm
+                        e.Handled = true;
+                        toolStripBtnConfirm.PerformClick();
                         break;
                     default:
                         break;
@@ -206,6 +213,7 @@ namespace BarcodeInspection
             newChildFrm.Text = childForm.Name + "-" + frmText;
             newChildFrm.MdiParent = this;
             newChildFrm.WindowState = FormWindowState.Maximized;
+            newChildFrm.StartPosition = FormStartPosition.WindowsDefaultLocation;
             newChildFrm.Show();
         }
 
@@ -255,10 +263,8 @@ namespace BarcodeInspection
         {
             this.toolStripBtnSave.Enabled = false;
 
-            Task task = Task.Factory.StartNew(() =>
-            {
-                this.Invoke((Action)async delegate
-                {
+            Task task = Task.Factory.StartNew(() => {
+                this.Invoke((Action)async delegate {
                     await RunTopButton(CommonTopButton.SAVE);
                     this.toolStripBtnSave.Enabled = true;
                 });
@@ -282,6 +288,18 @@ namespace BarcodeInspection
             Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", loginUser.AuthToken);
 
             GlobalSetting.Instance.AuthToken = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", string.Empty).ToString();
+        }
+
+        private void toolStripBtnConfirm_Click(object sender, EventArgs e)
+        {
+            this.toolStripBtnConfirm.Enabled = false;
+
+            Task task = Task.Factory.StartNew(() => {
+                this.Invoke((Action)async delegate {
+                    await RunTopButton(CommonTopButton.CONFIRM);
+                    this.toolStripBtnConfirm.Enabled = true;
+                });
+            });
         }
     }
 }

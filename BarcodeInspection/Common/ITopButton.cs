@@ -10,6 +10,7 @@ namespace BarcodeInspection.Common
     {
         Task Search();
         Task Save();
+        Task Confirm();
         void Download();
         void Upload();
         void Print();

@@ -22,12 +22,12 @@ namespace BarcodeInspection.Presenters
         }
 
 
-        public DataTable ExcelUpload(DataTable dt, string customer)
+        public DataTable ExcelUpload(DataTable dt, DateTime Rqshpd, string customer)
         {
             DataTable dtResult = new DataTable(); ;
             if(customer.Equals("1001"))
             {
-                dtResult = ExcelUpload10(dt);
+                dtResult = ExcelUpload1001(dt);
             }
 
             return dtResult;           
@@ -39,7 +39,7 @@ namespace BarcodeInspection.Presenters
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload10(DataTable dt)
+        private DataTable ExcelUpload1001(DataTable dt)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -63,10 +63,10 @@ namespace BarcodeInspection.Presenters
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
         }
 
-        public async Task Save(DataTable dt)
+        public async Task Save(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
         {
             string responseResult = string.Empty;
-            string jsonString = JsonConvert.SerializeObject(dt);
+            string jsonString = JsonConvert.SerializeObject((dgv.DataSource as DataTable));
 
             //List<Lobsps1Model> lst_param = new List<Lobsps1Model>();
             //for (int i = 0; i < 1; i++)
@@ -105,30 +105,69 @@ namespace BarcodeInspection.Presenters
             {
                 MessageBox.Show(responseResult);
             }
+            else
+            {
+                await Search(dgv, Rqshpd, customer, isChecked);
+            }
         }
 
-        public async Task Search(DataGridView dgv, DateTime Rqshpd, string customer)
+        public async Task Search(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
         {
             string responseResult = string.Empty;
 
+            Clear(dgv);
+
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
-            requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?)}");  //함수 호출
+            requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?, ?)}");  //함수 호출
             requestDic.Add("p_compky", "A001"); 
             requestDic.Add("p_wareky", "10");
             requestDic.Add("p_rqshpd", Rqshpd.ToString("yyyy-MM-dd"));
             requestDic.Add("p_dlwrky", customer);
-            
+            requestDic.Add("p_status", isChecked?"Y":"N");
+
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
 
-            //List<Lobsps1Model> _lstLobsps1Model = new List<Lobsps1Model>();
-            //_lstLobsps1Model = JsonConvert.DeserializeObject<List<Lobsps1Model>>(responseResult);
+            if(!string.IsNullOrEmpty(responseResult))
+            {
+                //List<Lobsps1Model> _lstLobsps1Model = new List<Lobsps1Model>();
+                //_lstLobsps1Model = JsonConvert.DeserializeObject<List<Lobsps1Model>>(responseResult);
 
-            DataTable dt = (DataTable)JsonConvert.DeserializeObject(responseResult, (typeof(DataTable)));
-            Debug.WriteLine(dt.Rows.Count);
+                DataTable dt = (DataTable)JsonConvert.DeserializeObject(responseResult, (typeof(DataTable)));
+                Debug.WriteLine(dt.Rows.Count);
 
-            dgv.DataSource = dt;
+                dgv.DataSource = dt;
+            }
         }
 
+        public void Clear(DataGridView dgv)
+        {
+            int row = dgv.Rows.Count;
+
+            for (int i = 0; i < row; i++)
+            {
+                dgv.Rows.RemoveAt(0);
+            }
+        }
+
+        public async Task Confirm(DataGridView dgv, DateTime Rqshpd, string customer)
+        {
+            string responseResult = string.Empty;
+
+            Dictionary<string, string> requestDic = new Dictionary<string, string>();
+            requestDic.Add("UFN", "{? = call ufn_set_lobsc011(?, ?, ?, ?, ?)}");  //함수 호출
+            requestDic.Add("p_rqshpd", Rqshpd.ToString("yyyy-MM-dd"));
+            requestDic.Add("p_compky", "A001");
+            requestDic.Add("p_wareky", "10");
+            requestDic.Add("p_dlwrky", customer);
+            requestDic.Add("p_userid", "90773532");
+
+            responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
+
+            if (!string.IsNullOrEmpty(responseResult))
+            {
+
+            }
+        }
     }
 }

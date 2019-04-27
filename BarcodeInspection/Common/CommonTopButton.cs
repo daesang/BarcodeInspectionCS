@@ -10,6 +10,7 @@ namespace BarcodeInspection.Common
     {
         SEARCH,
         SAVE,
+        CONFIRM,
         DOWNLAOD,
         UPLOAD,
         PRINT,

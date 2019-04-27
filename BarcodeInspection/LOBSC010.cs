@@ -111,7 +111,7 @@ namespace BarcodeInspection
 
                 if (dt != null || dt.Rows.Count > 0)
                 {
-                    this.dataGridView1.DataSource = _presenter.ExcelUpload(dt, cboCustomer.SelectedValue.ToString());
+                    this.dataGridView1.DataSource = _presenter.ExcelUpload(dt, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
                 }
             }
             catch (Exception ex)
@@ -150,14 +150,20 @@ namespace BarcodeInspection
 
         async Task ITopButton.Search()
         {
-            await _presenter.Search(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
+            await _presenter.Search(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString(), radioButtonConfirm.Checked);
         }
 
         async Task ITopButton.Save()
         {
+            if (radioButtonConfirm.Checked)
+            {
+                MessageBox.Show("확정상태에서는 저장 할 수 없습니다.");
+                return;
+            }
+
             if (this.dataGridView1.DataSource != null && ((DataTable)this.dataGridView1.DataSource).Rows.Count > 1)
             {
-                await _presenter.Save((DataTable)this.dataGridView1.DataSource);
+                await _presenter.Save(this.dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString(), radioButtonConfirm.Checked);
             }
         }
 
@@ -178,12 +184,22 @@ namespace BarcodeInspection
 
         void ITopButton.Clear()
         {
-            int row = dataGridView1.Rows.Count;
-
-            for (int i = 0; i < row; i++)
-            {
-                dataGridView1.Rows.RemoveAt(0);
-            }
+            _presenter.Clear(this.dataGridView1);
         }
+
+        async Task ITopButton.Confirm()
+        {
+            Console.WriteLine("test");
+
+            
+            if(radioButtonConfirm.Checked)
+            {
+                MessageBox.Show("확정상태에서는 확정 할 수 없습니다.");
+                return;
+            }
+
+            await _presenter.Confirm(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
+        }
+
     }
 }

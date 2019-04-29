@@ -186,10 +186,6 @@ namespace BarcodeInspection
 
         private void LOBSC010ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //LOBSC010 form = new LOBSC010();
-            //form.MdiParent = this;
-            //form.Show();
-
             subNewMdiChildren(new LOBSC010(), "엑셀 업로드");
         }
 
@@ -213,7 +209,7 @@ namespace BarcodeInspection
             newChildFrm.Text = childForm.Name + "-" + frmText;
             newChildFrm.MdiParent = this;
             newChildFrm.WindowState = FormWindowState.Maximized;
-            newChildFrm.StartPosition = FormStartPosition.WindowsDefaultLocation;
+            //newChildFrm.StartPosition = FormStartPosition.WindowsDefaultLocation;
             newChildFrm.Show();
         }
 
@@ -300,6 +296,11 @@ namespace BarcodeInspection
                     this.toolStripBtnConfirm.Enabled = true;
                 });
             });
+        }
+
+        private void LOBSC020ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            subNewMdiChildren(new LOBSC020(), "스캔 처리현황");
         }
     }
 }

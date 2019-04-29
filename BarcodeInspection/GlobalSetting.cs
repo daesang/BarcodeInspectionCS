@@ -10,7 +10,7 @@ namespace BarcodeInspection
     {
         //GITHUB테스트
         //git서버에 반영하려면 Command & Push
-        private string DefaultEndpoint = "http://192.168.29.4:80";
+        private string DefaultEndpoint = "http://barcode.daesangit.com";
 
         private string _baseEndpoint = string.Empty;
         private static readonly GlobalSetting _instance = new GlobalSetting();

@@ -33,13 +33,13 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItemOutbound = new System.Windows.Forms.ToolStripMenuItem();
             this.LOBSC010ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.피킹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.출차ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LOBSC020ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripBtnSearch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnConfirm = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnDownload = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnUpload = new System.Windows.Forms.ToolStripButton();
@@ -47,7 +47,6 @@
             this.toolStripBtnClear = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnClose = new System.Windows.Forms.ToolStripButton();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.toolStripBtnSave = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -68,8 +67,7 @@
             // 
             this.ToolStripMenuItemOutbound.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LOBSC010ToolStripMenuItem,
-            this.피킹ToolStripMenuItem,
-            this.출차ToolStripMenuItem});
+            this.LOBSC020ToolStripMenuItem});
             this.ToolStripMenuItemOutbound.Name = "ToolStripMenuItemOutbound";
             this.ToolStripMenuItemOutbound.Size = new System.Drawing.Size(67, 20);
             this.ToolStripMenuItemOutbound.Text = "출고관리";
@@ -77,21 +75,16 @@
             // LOBSC010ToolStripMenuItem
             // 
             this.LOBSC010ToolStripMenuItem.Name = "LOBSC010ToolStripMenuItem";
-            this.LOBSC010ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.LOBSC010ToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.LOBSC010ToolStripMenuItem.Text = "[LOBSC010] 엑셀 업로드";
             this.LOBSC010ToolStripMenuItem.Click += new System.EventHandler(this.LOBSC010ToolStripMenuItem_Click);
             // 
-            // 피킹ToolStripMenuItem
+            // LOBSC020ToolStripMenuItem
             // 
-            this.피킹ToolStripMenuItem.Name = "피킹ToolStripMenuItem";
-            this.피킹ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.피킹ToolStripMenuItem.Text = "피킹";
-            // 
-            // 출차ToolStripMenuItem
-            // 
-            this.출차ToolStripMenuItem.Name = "출차ToolStripMenuItem";
-            this.출차ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.출차ToolStripMenuItem.Text = "출차";
+            this.LOBSC020ToolStripMenuItem.Name = "LOBSC020ToolStripMenuItem";
+            this.LOBSC020ToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.LOBSC020ToolStripMenuItem.Text = "[LOBSC020] 스캔 처리현황";
+            this.LOBSC020ToolStripMenuItem.Click += new System.EventHandler(this.LOBSC020ToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -141,6 +134,17 @@
             this.toolStripBtnSearch.Text = "조회(F2)";
             this.toolStripBtnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripBtnSearch.Click += new System.EventHandler(this.toolStripBtnSearch_Click);
+            // 
+            // toolStripBtnSave
+            // 
+            this.toolStripBtnSave.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStripBtnSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnSave.Image")));
+            this.toolStripBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnSave.Name = "toolStripBtnSave";
+            this.toolStripBtnSave.Size = new System.Drawing.Size(99, 42);
+            this.toolStripBtnSave.Text = "저장(F3)";
+            this.toolStripBtnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripBtnSave.Click += new System.EventHandler(this.toolStripBtnSave_Click);
             // 
             // toolStripBtnConfirm
             // 
@@ -212,17 +216,6 @@
             this.tabControl.Size = new System.Drawing.Size(996, 23);
             this.tabControl.TabIndex = 9;
             // 
-            // toolStripBtnSave
-            // 
-            this.toolStripBtnSave.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStripBtnSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnSave.Image")));
-            this.toolStripBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnSave.Name = "toolStripBtnSave";
-            this.toolStripBtnSave.Size = new System.Drawing.Size(99, 42);
-            this.toolStripBtnSave.Text = "저장(F3)";
-            this.toolStripBtnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripBtnSave.Click += new System.EventHandler(this.toolStripBtnSave_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -260,8 +253,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemOutbound;
         private System.Windows.Forms.ToolStripMenuItem LOBSC010ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 피킹ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 출차ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LOBSC020ToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton toolStripBtnSearch;
         private System.Windows.Forms.ToolStripButton toolStripBtnConfirm;

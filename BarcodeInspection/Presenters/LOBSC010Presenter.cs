@@ -29,13 +29,17 @@ namespace BarcodeInspection.Presenters
             {
                 dtResult = ExcelUpload1001(dt);
             }
+            else if (customer.Equals("1004"))
+            {
+                dtResult = ExcelUpload1004(dt);
+            }
 
             return dtResult;           
         }
 
 
         /// <summary>
-        /// 1001, 삼성웰스토리
+        /// 1001.삼성웰스토리
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
@@ -55,9 +59,38 @@ namespace BarcodeInspection.Presenters
                             lbbrcd = dr.Field<string>(35),
                             dlvycd = dr.Field<string>(8),
                             dlvynm = dr.Field<string>(9),
-                            prodcd = dr.Field<object>(4),
+                            prodcd = Convert.ToString(dr.Field<object>(4)).Substring(0, 10),
                             prodnm = dr.Field<string>(5),
                             ordqty = dr.Field<object>(17),
+                            status = "N"
+                        };
+            return CustomLINQtoDataSetMethods.CopyToDataTable(query);
+        }
+
+        /// <summary>
+        /// 1004.동원홈푸드
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private DataTable ExcelUpload1004(DataTable dt)
+        {
+            var query =
+                        from dr in dt.AsEnumerable()
+                        select new
+                        {
+                            compky = "A001",
+                            wareky = "10",
+                            rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(21).Substring(0, 4), dr.Field<string>(21).Substring(4, 2), dr.Field<string>(21).Substring(6, 2)),   //"20190321" 이런형태
+                            dlwrky = "1004",
+                            dlwrnm = "동원홈푸드",
+                            ruteky = dr.Field<string>(3) == "시화(FS)" ? "R10" : dr.Field<string>(3) == "시화(급식유통)" ? "R11" : " ",
+                            rutenm = dr.Field<string>(3),
+                            lbbrcd = dr.Field<string>(25).Substring(0, 31),
+                            dlvycd = dr.Field<string>(24), //납품처
+                            dlvynm = dr.Field<string>(4), //납품처명
+                            prodcd = Convert.ToString(dr.Field<double>(0)).Substring(0, 6), 
+                            prodnm = dr.Field<string>(1),
+                            ordqty = dr.Field<object>(6),
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
@@ -66,6 +99,12 @@ namespace BarcodeInspection.Presenters
         public async Task Save(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
         {
             string responseResult = string.Empty;
+
+            if(dgv.DataSource == null || dgv.Rows.Count == 0)
+            {
+                return;
+            }
+
             string jsonString = JsonConvert.SerializeObject((dgv.DataSource as DataTable));
 
             //List<Lobsps1Model> lst_param = new List<Lobsps1Model>();
@@ -119,7 +158,7 @@ namespace BarcodeInspection.Presenters
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
             requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?, ?)}");  //함수 호출
-            requestDic.Add("p_compky", "A001"); 
+            requestDic.Add("p_compky", "A001");     
             requestDic.Add("p_wareky", "10");
             requestDic.Add("p_rqshpd", Rqshpd.ToString("yyyy-MM-dd"));
             requestDic.Add("p_dlwrky", customer);
@@ -142,6 +181,11 @@ namespace BarcodeInspection.Presenters
 
         public void Clear(DataGridView dgv)
         {
+            if(dgv.DataSource == null || dgv.Rows.Count == 0)
+            {
+                return;
+            }
+
             int row = dgv.Rows.Count;
 
             for (int i = 0; i < row; i++)
@@ -162,11 +206,15 @@ namespace BarcodeInspection.Presenters
             requestDic.Add("p_dlwrky", customer);
             requestDic.Add("p_userid", "90773532");
 
-            responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
+            responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.SET, requestDic);
 
-            if (!string.IsNullOrEmpty(responseResult))
+            if (!responseResult.Equals("OK"))
             {
-
+                MessageBox.Show(responseResult);
+            }
+            else
+            {
+                await Search(dgv, Rqshpd, customer, false);
             }
         }
     }

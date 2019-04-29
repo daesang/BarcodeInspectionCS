@@ -66,6 +66,8 @@ namespace BarcodeInspection
             this.cboCustomer.ValueMember="Code";
             this.cboCustomer.DisplayMember="Name";
             this.cboCustomer.SelectedIndex=0;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
 

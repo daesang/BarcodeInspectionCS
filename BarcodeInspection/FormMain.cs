@@ -270,6 +270,8 @@ namespace BarcodeInspection
 
         private async void FormMain_Load(object sender, EventArgs e)
         {
+            this.Text = "Ver. " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
             //ToDo 
             //로그인 테스트
 

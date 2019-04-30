@@ -78,19 +78,34 @@ namespace BarcodeInspection.Presenters
                         from dr in dt.AsEnumerable()
                         select new
                         {
+                            //compky = "A001",
+                            //wareky = "10",
+                            //rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(21).Substring(0, 4), dr.Field<string>(21).Substring(4, 2), dr.Field<string>(21).Substring(6, 2)),   //"20190321" 이런형태
+                            //dlwrky = "1004",
+                            //dlwrnm = "동원홈푸드",
+                            //ruteky = dr.Field<string>(3) == "시화(FS)" ? "R10" : dr.Field<string>(3) == "시화(급식유통)" ? "R11" : " ",
+                            //rutenm = dr.Field<string>(3),
+                            //lbbrcd = dr.Field<string>(25).Substring(0, 31),
+                            //dlvycd = dr.Field<string>(24), //납품처
+                            //dlvynm = dr.Field<string>(4), //납품처명
+                            //prodcd = Convert.ToString(dr.Field<double>(0)).Substring(0, 6), 
+                            //prodnm = dr.Field<string>(1),
+                            //ordqty = dr.Field<object>(6),
+                            //status = "N"
+
                             compky = "A001",
                             wareky = "10",
-                            rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(21).Substring(0, 4), dr.Field<string>(21).Substring(4, 2), dr.Field<string>(21).Substring(6, 2)),   //"20190321" 이런형태
+                            rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(22).Substring(0, 4), dr.Field<string>(22).Substring(4, 2), dr.Field<string>(22).Substring(6, 2)),   //"20190321" 이런형태
                             dlwrky = "1004",
                             dlwrnm = "동원홈푸드",
-                            ruteky = dr.Field<string>(3) == "시화(FS)" ? "R10" : dr.Field<string>(3) == "시화(급식유통)" ? "R11" : " ",
-                            rutenm = dr.Field<string>(3),
-                            lbbrcd = dr.Field<string>(25).Substring(0, 31),
-                            dlvycd = dr.Field<string>(24), //납품처
-                            dlvynm = dr.Field<string>(4), //납품처명
-                            prodcd = Convert.ToString(dr.Field<double>(0)).Substring(0, 6), 
-                            prodnm = dr.Field<string>(1),
-                            ordqty = dr.Field<object>(6),
+                            ruteky = dr.Field<string>(4) == "시화(FS)" ? "R10" : dr.Field<string>(4) == "시화(급식유통)" ? "R11" : " ",
+                            rutenm = dr.Field<string>(4),
+                            lbbrcd = dr.Field<string>(26).Substring(0, 31),
+                            dlvycd = dr.Field<string>(25), //납품처
+                            dlvynm = dr.Field<string>(5), //납품처명
+                            prodcd = Convert.ToString(dr.Field<double>(1)).Substring(0, 6),
+                            prodnm = dr.Field<string>(2),
+                            ordqty = dr.Field<object>(7),
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);

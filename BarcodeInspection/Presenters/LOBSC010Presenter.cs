@@ -103,7 +103,8 @@ namespace BarcodeInspection.Presenters
                             lbbrcd = dr.Field<string>(26).Substring(0, 31),
                             dlvycd = dr.Field<string>(25), //납품처
                             dlvynm = dr.Field<string>(5), //납품처명
-                            prodcd = Convert.ToString(dr.Field<double>(1)).Substring(0, 6),
+                            //prodcd = Convert.ToString(dr.Field<double>(1)).Substring(0, 6),
+                            prodcd = dr.Field<string>(1),
                             prodnm = dr.Field<string>(2),
                             ordqty = dr.Field<object>(7),
                             status = "N"

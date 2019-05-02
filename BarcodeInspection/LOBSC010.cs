@@ -44,21 +44,27 @@ namespace BarcodeInspection
             dt.Columns.Add(new DataColumn("Name", typeof(string)));
 
             row = dt.NewRow();
-            row["Code"] = "1001";
-            row["Name"] = "삼성웰스토리";
+            row["Code"] = "1010";
+            row["Name"] = "삼성웰스토리-평택";
             dt.Rows.Add(row);
+
             row = dt.NewRow();
-            row["Code"] = "1002";
+            row["Code"] = "1011";
+            row["Name"] = "삼성웰스토리-용인";
+            dt.Rows.Add(row);
+
+            row = dt.NewRow();
+            row["Code"] = "1020";
             row["Name"] = "신세계";
             dt.Rows.Add(row);
 
             row = dt.NewRow();
-            row["Code"] = "1003";
+            row["Code"] = "1030";
             row["Name"] = "CJ후레쉬웨이";
             dt.Rows.Add(row);
 
             row = dt.NewRow();
-            row["Code"] = "1004";
+            row["Code"] = "1040";
             row["Name"] = "동원홈푸드";
             dt.Rows.Add(row);
 
@@ -125,7 +131,6 @@ namespace BarcodeInspection
 
             }
         }
-
 
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {

@@ -25,13 +25,13 @@ namespace BarcodeInspection.Presenters
         public DataTable ExcelUpload(DataTable dt, DateTime Rqshpd, string customer)
         {
             DataTable dtResult = new DataTable(); ;
-            if(customer.Equals("1001"))
+            if(customer.Equals("1010") || customer.Equals("1011"))
             {
-                dtResult = ExcelUpload1001(dt);
+                dtResult = ExcelUpload1010(dt, customer);
             }
-            else if (customer.Equals("1004"))
+            else if (customer.Equals("1040"))
             {
-                dtResult = ExcelUpload1004(dt);
+                dtResult = ExcelUpload1040(dt, customer);
             }
 
             return dtResult;           
@@ -39,11 +39,11 @@ namespace BarcodeInspection.Presenters
 
 
         /// <summary>
-        /// 1001.삼성웰스토리
+        /// 1001.삼성웰스토리-평택/용인
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1001(DataTable dt)
+        private DataTable ExcelUpload1010(DataTable dt, string customer)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -52,10 +52,10 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = dr.Field<DateTime>(21).ToString("yyyy-MM-dd"),
-                            dlwrky = "1001",
-                            dlwrnm = "삼성웰스토리",
-                            ruteky = string.Format("{0}{1}", dr.Field<string>(11), dr.Field<string>(10)),
-                            rutenm = string.Format("{0}{1}", dr.Field<string>(11), dr.Field<string>(10)),
+                            dlwrky = customer,
+                            dlwrnm = customer.Equals("1010")? "삼성웰스토리-평택": "삼성웰스토리-용인",
+                            ruteky = dr.Field<string>(10),
+                            rutenm = dr.Field<string>(10),
                             lbbrcd = dr.Field<string>(35),
                             dlvycd = dr.Field<string>(8),
                             dlvynm = dr.Field<string>(9),
@@ -72,7 +72,7 @@ namespace BarcodeInspection.Presenters
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1004(DataTable dt)
+        private DataTable ExcelUpload1040(DataTable dt, string customer)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -96,13 +96,15 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(22).Substring(0, 4), dr.Field<string>(22).Substring(4, 2), dr.Field<string>(22).Substring(6, 2)),   //"20190321" 이런형태
-                            dlwrky = "1004",
+                            dlwrky = customer,
                             dlwrnm = "동원홈푸드",
-                            ruteky = dr.Field<string>(4) == "시화(FS)" ? "R10" : dr.Field<string>(4) == "시화(급식유통)" ? "R11" : " ",
-                            rutenm = dr.Field<string>(4),
+                            //ruteky = dr.Field<string>(4) == "시화(FS)" ? "R10" : dr.Field<string>(4) == "시화(급식유통)" ? "R11" : " ",
+                            ruteky = dr.Field<string>(4).ToString().Trim(),
+                            rutenm = dr.Field<string>(4).ToString().Trim(),
                             lbbrcd = dr.Field<string>(26).Substring(0, 31),
-                            dlvycd = dr.Field<string>(25), //납품처
-                            dlvynm = dr.Field<string>(5), //납품처명
+                            //dlvycd = dr.Field<string>(25), //납품처
+                            dlvycd = dr.Field<string>(5).ToString().Trim(), //납품처
+                            dlvynm = dr.Field<string>(5).ToString().Trim(), //납품처명
                             //prodcd = Convert.ToString(dr.Field<double>(1)).Substring(0, 6),
                             prodcd = dr.Field<string>(1),
                             prodnm = dr.Field<string>(2),
@@ -120,6 +122,14 @@ namespace BarcodeInspection.Presenters
             {
                 return;
             }
+
+            Debug.WriteLine(dgv.Rows[0].Cells["rqshpd"].Value.ToString());  
+            
+            if(!Rqshpd.ToString("yyyy-MM-dd").Equals(dgv.Rows[0].Cells["rqshpd"].Value.ToString()))
+            {
+                MessageBox.Show("납품 요청일을 확인해 주세요.\n화면과 엑셀의 납품 요청일이 다릅니다.");
+                return;
+            }            
 
             string jsonString = JsonConvert.SerializeObject((dgv.DataSource as DataTable));
 

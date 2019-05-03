@@ -101,7 +101,8 @@ namespace BarcodeInspection.Presenters
                             //ruteky = dr.Field<string>(4) == "시화(FS)" ? "R10" : dr.Field<string>(4) == "시화(급식유통)" ? "R11" : " ",
                             ruteky = dr.Field<string>(4).ToString().Trim(),
                             rutenm = dr.Field<string>(4).ToString().Trim(),
-                            lbbrcd = dr.Field<string>(26).Substring(0, 31),
+                            //lbbrcd = dr.Field<string>(26).Substring(0, 31),
+                            lbbrcd = dr.Field<string>(26).ToString().Trim(),
                             //dlvycd = dr.Field<string>(25), //납품처
                             dlvycd = dr.Field<string>(5).ToString().Trim(), //납품처
                             dlvynm = dr.Field<string>(5).ToString().Trim(), //납품처명

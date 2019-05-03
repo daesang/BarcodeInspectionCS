@@ -166,6 +166,7 @@
             this.toolStripBtnDownload.Size = new System.Drawing.Size(125, 42);
             this.toolStripBtnDownload.Text = "다운로드(F5)";
             this.toolStripBtnDownload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripBtnDownload.Click += new System.EventHandler(this.toolStripBtnDownload_Click);
             // 
             // toolStripBtnUpload
             // 
@@ -215,6 +216,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(996, 23);
             this.tabControl.TabIndex = 9;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // FormMain
             // 

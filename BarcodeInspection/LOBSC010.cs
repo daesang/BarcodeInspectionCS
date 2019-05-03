@@ -60,7 +60,7 @@ namespace BarcodeInspection
 
             row = dt.NewRow();
             row["Code"] = "1030";
-            row["Name"] = "CJ후레쉬웨이";
+            row["Name"] = "CJ프레시웨이";
             dt.Rows.Add(row);
 
             row = dt.NewRow();
@@ -176,7 +176,38 @@ namespace BarcodeInspection
 
         void ITopButton.Download()
         {
-            
+            if(this.dataGridView1.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                //saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                //saveFileDialog.InitialDirectory = saveFileDialog.InitialDirectory = "{Desktop}";
+                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                saveFileDialog.Filter = "Excel File(*.xlsx)|*.xlsx";
+
+                if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    ExcelDownload.GenerateExcel((DataTable)this.dataGridView1.DataSource, saveFileDialog.FileName, "Data");
+
+                    MessageBox.Show(string.Format("File name '{0}' generated successfully.", saveFileDialog.FileName), "File generated successfully!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show(ex.Message, "Error - btnExcel_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+            }
         }
 
         void ITopButton.Print()

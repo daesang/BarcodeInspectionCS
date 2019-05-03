@@ -124,7 +124,9 @@ namespace BarcodeInspection
                 if (!tabControl.Visible)
                     tabControl.Visible = true;
             }
+
         }
+
         void ActiveMdiChild_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((sender as Form).Tag as TabPage).Dispose();
@@ -303,6 +305,18 @@ namespace BarcodeInspection
         private void LOBSC020ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             subNewMdiChildren(new LOBSC020(), "스캔 처리현황");
+        }
+
+        private void toolStripBtnDownload_Click(object sender, EventArgs e)
+        {
+            this.toolStripBtnDownload.Enabled = false;
+
+            Task task = Task.Factory.StartNew(() => {
+                this.Invoke((Action)async delegate {
+                    await RunTopButton(CommonTopButton.DOWNLAOD);
+                    this.toolStripBtnDownload.Enabled = true;
+                });
+            });
         }
     }
 }

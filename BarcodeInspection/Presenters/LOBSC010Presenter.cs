@@ -33,6 +33,14 @@ namespace BarcodeInspection.Presenters
             {
                 dtResult = ExcelUpload1040(dt, customer);
             }
+            else if (customer.Equals("1020")) //신세계
+            {
+                dtResult = ExcelUpload1020(dt, customer);
+            }
+            else if (customer.Equals("1030")) //CJ프레쉬웨이
+            {
+                dtResult = ExcelUpload1030(dt, customer);
+            }
 
             return dtResult;           
         }
@@ -54,12 +62,12 @@ namespace BarcodeInspection.Presenters
                             rqshpd = dr.Field<DateTime>(21).ToString("yyyy-MM-dd"),
                             dlwrky = customer,
                             dlwrnm = customer.Equals("1010")? "삼성웰스토리-평택": "삼성웰스토리-용인",
-                            ruteky = dr.Field<string>(10),
+                            ruteky = dr.Field<string>(10).ToString().Trim(),
                             rutenm = dr.Field<string>(10),
-                            lbbrcd = dr.Field<string>(35),
-                            dlvycd = dr.Field<string>(8),
+                            lbbrcd = dr.Field<string>(35).ToString().Trim(),
+                            dlvycd = dr.Field<string>(8).ToString().Trim(),
                             dlvynm = dr.Field<string>(9),
-                            prodcd = Convert.ToString(dr.Field<object>(4)).Substring(0, 10),
+                            prodcd = Convert.ToString(dr.Field<object>(4)).Trim().Substring(0, 10),
                             prodnm = dr.Field<string>(5),
                             ordqty = dr.Field<object>(17),
                             status = "N"
@@ -115,6 +123,66 @@ namespace BarcodeInspection.Presenters
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
         }
 
+
+        /// <summary>
+        /// 신세계
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        private DataTable ExcelUpload1020(DataTable dt, string customer)
+        {
+            var query =
+                        from dr in dt.AsEnumerable()
+                        select new
+                        {
+                            compky = "A001",
+                            wareky = "10",
+                            rqshpd = dr.Field<object>(2),
+                            dlwrky = customer,
+                            dlwrnm = "신세계",
+                            ruteky = dr.Field<string>(28).ToString().Trim(),
+                            rutenm = dr.Field<string>(28).ToString().Trim(),
+                            lbbrcd = string.Format("{0}:{1}", dr.Field<string>(35).ToString().Trim(), Convert.ToString(dr.Field<object>(24)).ToString().Trim()),
+                            dlvycd = Convert.ToString(dr.Field<object>(25)).ToString().Trim(),
+                            dlvynm = dr.Field<string>(26).ToString().Trim(),
+                            prodcd = dr.Field<string>(9).ToString().Trim(),
+                            prodnm = dr.Field<string>(10),
+                            ordqty = dr.Field<object>(24), //숫자로?
+                            status = "N"
+                        };
+            return CustomLINQtoDataSetMethods.CopyToDataTable(query);
+        }
+
+        /// <summary>
+        /// CJ프레시웨이
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        private DataTable ExcelUpload1030(DataTable dt, string customer)
+        {
+            var query =
+                        from dr in dt.AsEnumerable()
+                        select new
+                        {
+                            compky = "A001",
+                            wareky = "10",
+                            rqshpd = dr.Field<object>(12),
+                            dlwrky = customer,
+                            dlwrnm = "CJ프레시웨이",
+                            ruteky = dr.Field<string>(0).ToString().Trim().Substring(0, 4),
+                            rutenm = dr.Field<string>(0).ToString().Trim().Substring(7),
+                            lbbrcd = dr.Field<string>(13).ToString().Trim(),
+                            dlvycd = dr.Field<string>(3).ToString().Trim(),
+                            dlvynm = dr.Field<string>(3).ToString().Trim(),
+                            prodcd = dr.Field<string>(1).ToString().Trim(),
+                            prodnm = dr.Field<string>(2),
+                            ordqty = dr.Field<object>(6), //숫자로?
+                            status = "N"
+                        };
+            return CustomLINQtoDataSetMethods.CopyToDataTable(query);
+        }
         public async Task Save(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
         {
             string responseResult = string.Empty;
@@ -126,7 +194,7 @@ namespace BarcodeInspection.Presenters
 
             Debug.WriteLine(dgv.Rows[0].Cells["rqshpd"].Value.ToString());  
             
-            if(!Rqshpd.ToString("yyyy-MM-dd").Equals(dgv.Rows[0].Cells["rqshpd"].Value.ToString()))
+            if(!Rqshpd.ToString("yyyy-MM-dd").Equals(Convert.ToDateTime(dgv.Rows[0].Cells["rqshpd"].Value.ToString()).ToString("yyyy-MM-dd")))
             {
                 MessageBox.Show("납품 요청일을 확인해 주세요.\n화면과 엑셀의 납품 요청일이 다릅니다.");
                 return;

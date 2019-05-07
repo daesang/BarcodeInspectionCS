@@ -22,6 +22,18 @@ namespace BarcodeInspection
     {
         LOBSC010Presenter _presenter;
 
+        public DateTime Rqshpd { get { return this.dateTimePicker1.Value;} }
+
+        public string Customer { get { return cboCustomer.SelectedValue.ToString(); } }
+
+        public bool IsConfirm => this.radioButtonConfirm.Checked?true:false;
+
+        public DataTable ExcelDataTable => this._excelDataTable;
+
+        public DataGridView ExcelDataGridView => this.dataGridView1;
+
+        private DataTable _excelDataTable = new DataTable();
+
         public LOBSC010()
         {
             InitializeComponent();
@@ -79,7 +91,7 @@ namespace BarcodeInspection
 
         void ITopButton.Upload()
         {
-            DataTable dt = new DataTable();
+            //DataTable dt = new DataTable();
 
             string fileName = string.Empty;
 
@@ -105,7 +117,7 @@ namespace BarcodeInspection
                 {
                     using (IExcelDataReader excelReader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        dt = excelReader.AsDataSet(
+                        _excelDataTable = excelReader.AsDataSet(
                                                     new ExcelDataSetConfiguration()
                                                     {
                                                         ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
@@ -117,9 +129,9 @@ namespace BarcodeInspection
                     }
                 }
 
-                if (dt != null || dt.Rows.Count > 0)
+                if (_excelDataTable != null || _excelDataTable.Rows.Count > 0)
                 {
-                    this.dataGridView1.DataSource = _presenter.ExcelUpload(dt, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
+                    this.dataGridView1.DataSource = _presenter.ExcelUpload();
                 }
             }
             catch (Exception ex)
@@ -157,7 +169,7 @@ namespace BarcodeInspection
 
         async Task ITopButton.Search()
         {
-            await _presenter.Search(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString(), radioButtonConfirm.Checked);
+            await _presenter.Search();
         }
 
         async Task ITopButton.Save()
@@ -170,7 +182,7 @@ namespace BarcodeInspection
 
             if (this.dataGridView1.DataSource != null && ((DataTable)this.dataGridView1.DataSource).Rows.Count > 1)
             {
-                await _presenter.Save(this.dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString(), radioButtonConfirm.Checked);
+                await _presenter.Save();
             }
         }
 
@@ -222,7 +234,7 @@ namespace BarcodeInspection
 
         void ITopButton.Clear()
         {
-            _presenter.Clear(this.dataGridView1);
+            _presenter.Clear();
         }
 
         async Task ITopButton.Confirm()
@@ -236,7 +248,7 @@ namespace BarcodeInspection
                 return;
             }
 
-            await _presenter.Confirm(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
+            await _presenter.Confirm();
         }
 
     }

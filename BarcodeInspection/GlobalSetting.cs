@@ -18,7 +18,7 @@ namespace BarcodeInspection
         public GlobalSetting()
         {
 #if DEBUG
-            DefaultEndpoint = "http://192.168.29.4";
+            DefaultEndpoint = "http://127.0.0.1:8080";
             //DefaultEndpoint = "http://barcode.daesangit.com";
 #endif
             //AuthToken = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", string.Empty).ToString();

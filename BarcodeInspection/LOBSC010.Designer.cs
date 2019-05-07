@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.compky = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wareky = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,9 +117,9 @@
             // rqshpd
             // 
             this.rqshpd.DataPropertyName = "rqshpd";
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.Format = "yyyy-MM-dd";
-            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.Format = "yyyy-MM-dd";
+            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle13;
             this.rqshpd.HeaderText = "납품요청일";
             this.rqshpd.Name = "rqshpd";
             this.rqshpd.ReadOnly = true;
@@ -127,8 +127,8 @@
             // dlwrky
             // 
             this.dlwrky.DataPropertyName = "dlwrky";
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle14;
             this.dlwrky.HeaderText = "납품센터코드";
             this.dlwrky.Name = "dlwrky";
             this.dlwrky.ReadOnly = true;
@@ -136,8 +136,8 @@
             // dlwrnm
             // 
             this.dlwrnm.DataPropertyName = "dlwrnm";
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle15;
             this.dlwrnm.HeaderText = "납품센터명";
             this.dlwrnm.Name = "dlwrnm";
             this.dlwrnm.ReadOnly = true;
@@ -145,8 +145,8 @@
             // ruteky
             // 
             this.ruteky.DataPropertyName = "ruteky";
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ruteky.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ruteky.DefaultCellStyle = dataGridViewCellStyle16;
             this.ruteky.HeaderText = "배차코드";
             this.ruteky.Name = "ruteky";
             this.ruteky.ReadOnly = true;
@@ -154,8 +154,8 @@
             // rutenm
             // 
             this.rutenm.DataPropertyName = "rutenm";
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.rutenm.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.rutenm.DefaultCellStyle = dataGridViewCellStyle17;
             this.rutenm.HeaderText = "배차명";
             this.rutenm.Name = "rutenm";
             this.rutenm.ReadOnly = true;
@@ -163,8 +163,8 @@
             // lbbrcd
             // 
             this.lbbrcd.DataPropertyName = "lbbrcd";
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle18;
             this.lbbrcd.HeaderText = "라벨바코드";
             this.lbbrcd.Name = "lbbrcd";
             this.lbbrcd.ReadOnly = true;
@@ -173,8 +173,8 @@
             // dlvycd
             // 
             this.dlvycd.DataPropertyName = "dlvycd";
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle19;
             this.dlvycd.HeaderText = "매출처코드";
             this.dlvycd.Name = "dlvycd";
             this.dlvycd.ReadOnly = true;
@@ -182,8 +182,8 @@
             // dlvynm
             // 
             this.dlvynm.DataPropertyName = "dlvynm";
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle20;
             this.dlvynm.HeaderText = "매출처명";
             this.dlvynm.Name = "dlvynm";
             this.dlvynm.ReadOnly = true;
@@ -192,8 +192,8 @@
             // prodcd
             // 
             this.prodcd.DataPropertyName = "prodcd";
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.prodcd.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.prodcd.DefaultCellStyle = dataGridViewCellStyle21;
             this.prodcd.HeaderText = "상품코드";
             this.prodcd.Name = "prodcd";
             this.prodcd.ReadOnly = true;
@@ -201,9 +201,9 @@
             // prodnm
             // 
             this.prodnm.DataPropertyName = "prodnm";
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle46.NullValue = null;
-            this.prodnm.DefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.NullValue = null;
+            this.prodnm.DefaultCellStyle = dataGridViewCellStyle22;
             this.prodnm.HeaderText = "상품명";
             this.prodnm.Name = "prodnm";
             this.prodnm.ReadOnly = true;
@@ -212,8 +212,8 @@
             // ordqty
             // 
             this.ordqty.DataPropertyName = "ordqty";
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ordqty.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ordqty.DefaultCellStyle = dataGridViewCellStyle23;
             this.ordqty.HeaderText = "수량";
             this.ordqty.Name = "ordqty";
             this.ordqty.ReadOnly = true;
@@ -221,8 +221,8 @@
             // status
             // 
             this.status.DataPropertyName = "status";
-            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.status.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.status.DefaultCellStyle = dataGridViewCellStyle24;
             this.status.HeaderText = "처리";
             this.status.Name = "status";
             this.status.ReadOnly = true;
@@ -241,11 +241,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(276, 16);
+            this.label1.Location = new System.Drawing.Point(266, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 16);
+            this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 11;
-            this.label1.Text = "고객사";
+            this.label1.Text = "납품센터";
             // 
             // label2
             // 

@@ -17,6 +17,13 @@ namespace BarcodeInspection
     public partial class LOBSC020 : Form, ILOBSC020View, ITopButton
     {
         LOBSC020Presenter _presenter;
+
+        public DateTime Rqshpd => this.dateTimePicker1.Value;
+
+        public string Customer => cboCustomer.SelectedValue.ToString();
+
+        public DataGridView ExcelDataGridView => this.dataGridView1;
+
         public LOBSC020()
         {
             InitializeComponent();
@@ -73,7 +80,7 @@ namespace BarcodeInspection
 
         void ITopButton.Clear()
         {
-            _presenter.Clear(this.dataGridView1);
+            _presenter.Clear();
         }
 
         void ITopButton.Close()
@@ -135,7 +142,7 @@ namespace BarcodeInspection
 
         async Task ITopButton.Search()
         {
-            await _presenter.Search(dataGridView1, dateTimePicker1.Value, cboCustomer.SelectedValue.ToString());
+            await _presenter.Search();
         }
 
         void ITopButton.Upload()

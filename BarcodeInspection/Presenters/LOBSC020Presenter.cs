@@ -20,21 +20,20 @@ namespace BarcodeInspection.Presenters
 
         }
 
-        public async Task Search(DataGridView dgv, DateTime Rqshpd, string customer)
+        public async Task Search()
         {
             string responseResult = string.Empty;
 
-            Clear(dgv);
+            Clear();
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>
             {
                 { "UFN", "{? = call ufn_get_lobsc020(?, ?, ?, ?)}" },  //함수 호출
                 { "p_compky", "A001" },
                 { "p_wareky", "10" },
-                { "p_rqshpd", Rqshpd.ToString("yyyy-MM-dd") },
-                { "p_dlwrky", customer }
+                { "p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd") },
+                { "p_dlwrky", View.Customer }
             };
-
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
 
@@ -46,23 +45,23 @@ namespace BarcodeInspection.Presenters
                 DataTable dt = (DataTable)JsonConvert.DeserializeObject(responseResult, (typeof(DataTable)));
                 Debug.WriteLine(dt.Rows.Count);
 
-                dgv.DataSource = dt;
+                View.ExcelDataGridView.DataSource = dt;
             }
         }
 
 
-        public void Clear(DataGridView dgv)
+        public void Clear()
         {
-            if (dgv.DataSource == null || dgv.Rows.Count == 0)
+            if (View.ExcelDataGridView.DataSource == null || View.ExcelDataGridView.Rows.Count == 0)
             {
                 return;
             }
 
-            int row = dgv.Rows.Count;
+            int row = View.ExcelDataGridView.Rows.Count;
 
             for (int i = 0; i < row; i++)
             {
-                dgv.Rows.RemoveAt(0);
+                View.ExcelDataGridView.Rows.RemoveAt(0);
             }
         }
     }

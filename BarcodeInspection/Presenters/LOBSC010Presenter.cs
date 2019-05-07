@@ -21,25 +21,25 @@ namespace BarcodeInspection.Presenters
 
         }
 
-
-        public DataTable ExcelUpload(DataTable dt, DateTime Rqshpd, string customer)
+        public DataTable ExcelUpload()
         {
-            DataTable dtResult = new DataTable(); ;
-            if(customer.Equals("1010") || customer.Equals("1011"))
+            DataTable dtResult = new DataTable();
+
+            if (View.Customer.Equals("1010") || View.Customer.Equals("1011"))
             {
-                dtResult = ExcelUpload1010(dt, customer);
+                dtResult = ExcelUpload1010(View.ExcelDataTable);
             }
-            else if (customer.Equals("1040"))
+            else if (View.Customer.Equals("1040"))
             {
-                dtResult = ExcelUpload1040(dt, customer);
+                dtResult = ExcelUpload1040(View.ExcelDataTable);
             }
-            else if (customer.Equals("1020")) //신세계
+            else if (View.Customer.Equals("1020")) //신세계
             {
-                dtResult = ExcelUpload1020(dt, customer);
+                dtResult = ExcelUpload1020(View.ExcelDataTable);
             }
-            else if (customer.Equals("1030")) //CJ프레쉬웨이
+            else if (View.Customer.Equals("1030")) //CJ프레쉬웨이
             {
-                dtResult = ExcelUpload1030(dt, customer);
+                dtResult = ExcelUpload1030(View.ExcelDataTable);
             }
 
             return dtResult;           
@@ -51,7 +51,7 @@ namespace BarcodeInspection.Presenters
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1010(DataTable dt, string customer)
+        private DataTable ExcelUpload1010(DataTable dt)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -60,8 +60,8 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = dr.Field<DateTime>(21).ToString("yyyy-MM-dd"),
-                            dlwrky = customer,
-                            dlwrnm = customer.Equals("1010")? "삼성웰스토리-평택": "삼성웰스토리-용인",
+                            dlwrky = View.Customer,
+                            dlwrnm = View.Customer.Equals("1010")? "삼성웰스토리-평택": "삼성웰스토리-용인",
                             ruteky = dr.Field<string>(10).ToString().Trim(),
                             rutenm = dr.Field<string>(10),
                             lbbrcd = dr.Field<string>(35).ToString().Trim(),
@@ -80,7 +80,7 @@ namespace BarcodeInspection.Presenters
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1040(DataTable dt, string customer)
+        private DataTable ExcelUpload1040(DataTable dt)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -104,7 +104,7 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = string.Format("{0}-{1}-{2}", dr.Field<string>(22).Substring(0, 4), dr.Field<string>(22).Substring(4, 2), dr.Field<string>(22).Substring(6, 2)),   //"20190321" 이런형태
-                            dlwrky = customer,
+                            dlwrky = View.Customer,
                             dlwrnm = "동원홈푸드",
                             //ruteky = dr.Field<string>(4) == "시화(FS)" ? "R10" : dr.Field<string>(4) == "시화(급식유통)" ? "R11" : " ",
                             ruteky = dr.Field<string>(4).ToString().Trim(),
@@ -130,7 +130,7 @@ namespace BarcodeInspection.Presenters
         /// <param name="dt"></param>
         /// <param name="customer"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1020(DataTable dt, string customer)
+        private DataTable ExcelUpload1020(DataTable dt)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -139,7 +139,7 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = dr.Field<object>(2),
-                            dlwrky = customer,
+                            dlwrky = View.Customer,
                             dlwrnm = "신세계",
                             ruteky = dr.Field<string>(28).ToString().Trim(),
                             rutenm = dr.Field<string>(28).ToString().Trim(),
@@ -160,7 +160,7 @@ namespace BarcodeInspection.Presenters
         /// <param name="dt"></param>
         /// <param name="customer"></param>
         /// <returns></returns>
-        private DataTable ExcelUpload1030(DataTable dt, string customer)
+        private DataTable ExcelUpload1030(DataTable dt)
         {
             var query =
                         from dr in dt.AsEnumerable()
@@ -169,7 +169,7 @@ namespace BarcodeInspection.Presenters
                             compky = "A001",
                             wareky = "10",
                             rqshpd = dr.Field<object>(12),
-                            dlwrky = customer,
+                            dlwrky = View.Customer,
                             dlwrnm = "CJ프레시웨이",
                             ruteky = dr.Field<string>(0).ToString().Trim().Substring(0, 4),
                             rutenm = dr.Field<string>(0).ToString().Trim().Substring(7),
@@ -183,24 +183,30 @@ namespace BarcodeInspection.Presenters
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
         }
-        public async Task Save(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
+        public async Task Save()
         {
             string responseResult = string.Empty;
 
-            if(dgv.DataSource == null || dgv.Rows.Count == 0)
+            if(View.ExcelDataGridView.DataSource == null || View.ExcelDataGridView.Rows.Count == 0)
             {
                 return;
             }
 
-            Debug.WriteLine(dgv.Rows[0].Cells["rqshpd"].Value.ToString());  
+            Debug.WriteLine(View.ExcelDataGridView.Rows[0].Cells["rqshpd"].Value.ToString());  
             
-            if(!Rqshpd.ToString("yyyy-MM-dd").Equals(Convert.ToDateTime(dgv.Rows[0].Cells["rqshpd"].Value.ToString()).ToString("yyyy-MM-dd")))
+            if(!View.Rqshpd.ToString("yyyy-MM-dd").Equals(Convert.ToDateTime(View.ExcelDataGridView.Rows[0].Cells["rqshpd"].Value.ToString()).ToString("yyyy-MM-dd")))
             {
                 MessageBox.Show("납품 요청일을 확인해 주세요.\n화면과 엑셀의 납품 요청일이 다릅니다.");
                 return;
-            }            
+            }
+            
+            if(!View.Customer.Equals(View.ExcelDataGridView.Rows[0].Cells["dlwrky"].Value.ToString()))
+            {
+                MessageBox.Show("납품센터를 확인해 주세요.\n화면과 엑셀의 납품센터가 다릅니다.");
+                return;
+            }
 
-            string jsonString = JsonConvert.SerializeObject((dgv.DataSource as DataTable));
+            string jsonString = JsonConvert.SerializeObject((View.ExcelDataGridView.DataSource as DataTable));
 
             //List<Lobsps1Model> lst_param = new List<Lobsps1Model>();
             //for (int i = 0; i < 1; i++)
@@ -241,23 +247,23 @@ namespace BarcodeInspection.Presenters
             }
             else
             {
-                await Search(dgv, Rqshpd, customer, isChecked);
+                await Search();
             }
         }
 
-        public async Task Search(DataGridView dgv, DateTime Rqshpd, string customer, bool isChecked)
+        public async Task Search()
         {
             string responseResult = string.Empty;
 
-            Clear(dgv);
+            Clear();
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
             requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?, ?)}");  //함수 호출
             requestDic.Add("p_compky", "A001");     
             requestDic.Add("p_wareky", "10");
-            requestDic.Add("p_rqshpd", Rqshpd.ToString("yyyy-MM-dd"));
-            requestDic.Add("p_dlwrky", customer);
-            requestDic.Add("p_status", isChecked?"Y":"N");
+            requestDic.Add("p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd"));
+            requestDic.Add("p_dlwrky", View.Customer);
+            requestDic.Add("p_status", View.IsConfirm?"Y":"N");
 
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
@@ -270,35 +276,35 @@ namespace BarcodeInspection.Presenters
                 DataTable dt = (DataTable)JsonConvert.DeserializeObject(responseResult, (typeof(DataTable)));
                 Debug.WriteLine(dt.Rows.Count);
 
-                dgv.DataSource = dt;
+                View.ExcelDataGridView.DataSource = dt;
             }
         }
 
-        public void Clear(DataGridView dgv)
+        public void Clear()
         {
-            if(dgv.DataSource == null || dgv.Rows.Count == 0)
+            if(View.ExcelDataGridView.DataSource == null || View.ExcelDataGridView.Rows.Count == 0)
             {
                 return;
             }
 
-            int row = dgv.Rows.Count;
+            int row = View.ExcelDataGridView.Rows.Count;
 
             for (int i = 0; i < row; i++)
             {
-                dgv.Rows.RemoveAt(0);
+                View.ExcelDataGridView.Rows.RemoveAt(0);
             }
         }
 
-        public async Task Confirm(DataGridView dgv, DateTime Rqshpd, string customer)
+        public async Task Confirm()
         {
             string responseResult = string.Empty;
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
             requestDic.Add("UFN", "{? = call ufn_set_lobsc011(?, ?, ?, ?, ?)}");  //함수 호출
-            requestDic.Add("p_rqshpd", Rqshpd.ToString("yyyy-MM-dd"));
+            requestDic.Add("p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd"));
             requestDic.Add("p_compky", "A001");
             requestDic.Add("p_wareky", "10");
-            requestDic.Add("p_dlwrky", customer);
+            requestDic.Add("p_dlwrky", View.Customer);
             requestDic.Add("p_userid", "90773532");
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.SET, requestDic);
@@ -309,7 +315,7 @@ namespace BarcodeInspection.Presenters
             }
             else
             {
-                await Search(dgv, Rqshpd, customer, false);
+                await Search();
             }
         }
     }

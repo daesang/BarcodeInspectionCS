@@ -47,6 +47,7 @@
             this.toolStripBtnClear = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnClose = new System.Windows.Forms.ToolStripButton();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -59,7 +60,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(996, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1036, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -93,7 +94,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 684);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip.Size = new System.Drawing.Size(996, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1036, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -115,11 +116,12 @@
             this.toolStripBtnUpload,
             this.toolStripBtnPrint,
             this.toolStripBtnClear,
+            this.toolStripBtnDelete,
             this.toolStripBtnClose});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip.Size = new System.Drawing.Size(996, 45);
+            this.toolStrip.Size = new System.Drawing.Size(1036, 45);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -214,15 +216,25 @@
             this.tabControl.Location = new System.Drawing.Point(0, 69);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(996, 23);
+            this.tabControl.Size = new System.Drawing.Size(1036, 23);
             this.tabControl.TabIndex = 9;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
+            // 
+            // toolStripBtnDelete
+            // 
+            this.toolStripBtnDelete.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStripBtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnDelete.Image")));
+            this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDelete.Name = "toolStripBtnDelete";
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(106, 42);
+            this.toolStripBtnDelete.Text = "삭제(F10)";
+            this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 706);
+            this.ClientSize = new System.Drawing.Size(1036, 706);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.statusStrip);
@@ -266,6 +278,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnUpload;
         private System.Windows.Forms.ToolStripButton toolStripBtnClear;
         private System.Windows.Forms.ToolStripButton toolStripBtnSave;
+        private System.Windows.Forms.ToolStripButton toolStripBtnDelete;
     }
 }
 

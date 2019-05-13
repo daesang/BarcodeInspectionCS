@@ -13,6 +13,8 @@ namespace BarcodeInspection.Views
         DateTime Rqshpd { get; }
         string Customer { get; }
 
+        string Wavecd { get; }
+
         bool IsConfirm { get; }
 
         DataTable ExcelDataTable { get; }

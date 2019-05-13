@@ -28,11 +28,12 @@ namespace BarcodeInspection.Presenters
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>
             {
-                { "UFN", "{? = call ufn_get_lobsc020(?, ?, ?, ?)}" },  //함수 호출
+                { "UFN", "{? = call ufn_get_lobsc020(?, ?, ?, ?, ?)}" },  //함수 호출
                 { "p_compky", "A001" },
                 { "p_wareky", "10" },
                 { "p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd") },
-                { "p_dlwrky", View.Customer }
+                { "p_dlwrky", View.Customer },
+                { "p_wavecd", View.Wavecd },
             };
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);

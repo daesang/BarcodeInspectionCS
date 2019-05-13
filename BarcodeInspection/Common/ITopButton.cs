@@ -11,6 +11,7 @@ namespace BarcodeInspection.Common
         Task Search();
         Task Save();
         Task Confirm();
+        Task Delete();
         void Download();
         void Upload();
         void Print();

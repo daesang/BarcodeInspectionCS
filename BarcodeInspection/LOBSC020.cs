@@ -24,6 +24,8 @@ namespace BarcodeInspection
 
         public DataGridView ExcelDataGridView => this.dataGridView1;
 
+        public string Wavecd => this.cboWave.SelectedValue.ToString();
+
         public LOBSC020()
         {
             InitializeComponent();
@@ -74,6 +76,36 @@ namespace BarcodeInspection
             this.cboCustomer.ValueMember = "Code";
             this.cboCustomer.DisplayMember = "Name";
             this.cboCustomer.SelectedIndex = 0;
+
+            DataTable dt2 = new DataTable();
+            DataRow row2 = null;
+            dt2.Columns.Add(new DataColumn("Code", typeof(string)));
+            dt2.Columns.Add(new DataColumn("Name", typeof(string)));
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "0";
+            row2["Name"] = "전체";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "1";
+            row2["Name"] = "1차(Wave)";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "2";
+            row2["Name"] = "2차(Wave)";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "3";
+            row2["Name"] = "3차(Wave)";
+            dt2.Rows.Add(row2);
+            
+            this.cboWave.DataSource = dt2;
+            this.cboWave.ValueMember = "Code";
+            this.cboWave.DisplayMember = "Name";
+            this.cboWave.SelectedIndex = 0;
 
             this.WindowState = FormWindowState.Maximized;
         }
@@ -166,6 +198,11 @@ namespace BarcodeInspection
             Size textSize = TextRenderer.MeasureText(rowIdx, this.Font);
             var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+        }
+
+        async Task ITopButton.Delete()
+        {
+            throw new NotImplementedException();
         }
     }
 }

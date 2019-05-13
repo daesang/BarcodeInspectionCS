@@ -82,6 +82,9 @@ namespace BarcodeInspection
                             case CommonTopButton.CLEAR:
                                 (frmChild as ITopButton).Clear();
                                 break;
+                            case CommonTopButton.DELETE:
+                                await (frmChild as ITopButton).Delete();
+                                break;
 
                             default:
                                 break;
@@ -315,6 +318,18 @@ namespace BarcodeInspection
                 this.Invoke((Action)async delegate {
                     await RunTopButton(CommonTopButton.DOWNLAOD);
                     this.toolStripBtnDownload.Enabled = true;
+                });
+            });
+        }
+
+        private void toolStripBtnDelete_Click(object sender, EventArgs e)
+        {
+            this.toolStripBtnDelete.Enabled = false;
+
+            Task task = Task.Factory.StartNew(() => {
+                this.Invoke((Action)async delegate {
+                    await RunTopButton(CommonTopButton.DELETE);
+                    this.toolStripBtnDelete.Enabled = true;
                 });
             });
         }

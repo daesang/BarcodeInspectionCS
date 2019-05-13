@@ -11,7 +11,8 @@ namespace BarcodeInspection.Views
     {
         DateTime Rqshpd { get; }
         string Customer { get; }
-                
+        string Wavecd { get; }
+
         DataGridView ExcelDataGridView { get; }
     }
 }

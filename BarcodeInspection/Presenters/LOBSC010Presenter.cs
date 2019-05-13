@@ -1,5 +1,4 @@
 ﻿using BarcodeInspection.Helper;
-using BarcodeInspection.Models;
 using BarcodeInspection.Services;
 using BarcodeInspection.Views;
 using Newtonsoft.Json;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +14,12 @@ namespace BarcodeInspection.Presenters
 {
     public class LOBSC010Presenter : Presenter<ILOBSC010View>
     {
+
+        private DateTime RqsphdSaved = new DateTime(1900, 1, 1);
+        private string CustomerSaved;
+
+        private string WaveSaved;
+
         public LOBSC010Presenter(ILOBSC010View view) : base(view)
         {
 
@@ -42,6 +46,10 @@ namespace BarcodeInspection.Presenters
                 dtResult = ExcelUpload1030(View.ExcelDataTable);
             }
 
+            RqsphdSaved = View.Rqshpd;
+            CustomerSaved = View.Customer;
+            WaveSaved = View.Wavecd;
+
             return dtResult;           
         }
 
@@ -64,12 +72,14 @@ namespace BarcodeInspection.Presenters
                             dlwrnm = View.Customer.Equals("1010")? "삼성웰스토리-평택": "삼성웰스토리-용인",
                             ruteky = dr.Field<string>(10).ToString().Trim(),
                             rutenm = dr.Field<string>(10),
+                            wavecd = View.Wavecd,
                             lbbrcd = dr.Field<string>(35).ToString().Trim(),
                             dlvycd = dr.Field<string>(8).ToString().Trim(),
                             dlvynm = dr.Field<string>(9),
                             prodcd = Convert.ToString(dr.Field<object>(4)).Trim().Substring(0, 10),
                             prodnm = dr.Field<string>(5),
                             ordqty = dr.Field<object>(17),
+                            attrb1 = string.Empty,
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
@@ -110,6 +120,7 @@ namespace BarcodeInspection.Presenters
                             ruteky = dr.Field<string>(4).ToString().Trim(),
                             rutenm = dr.Field<string>(4).ToString().Trim(),
                             //lbbrcd = dr.Field<string>(26).Substring(0, 31),
+                            wavecd = View.Wavecd,
                             lbbrcd = dr.Field<string>(26).ToString().Trim(),
                             //dlvycd = dr.Field<string>(25), //납품처
                             dlvycd = dr.Field<string>(5).ToString().Trim(), //납품처
@@ -118,6 +129,7 @@ namespace BarcodeInspection.Presenters
                             prodcd = dr.Field<string>(1),
                             prodnm = dr.Field<string>(2),
                             ordqty = dr.Field<object>(7),
+                            attrb1 = string.Empty,
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
@@ -126,6 +138,7 @@ namespace BarcodeInspection.Presenters
 
         /// <summary>
         /// 신세계
+        /// 배송군을  광주/왜관/밀양을 이천1물류센터로
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="customer"></param>
@@ -141,14 +154,16 @@ namespace BarcodeInspection.Presenters
                             rqshpd = dr.Field<object>(2),
                             dlwrky = View.Customer,
                             dlwrnm = "신세계",
-                            ruteky = dr.Field<string>(28).ToString().Trim(),
-                            rutenm = dr.Field<string>(28).ToString().Trim(),
+                            ruteky = dr.Field<string>(28).ToString().Trim().StartsWith("광주") || dr.Field<string>(28).ToString().Trim().StartsWith("왜관") || dr.Field<string>(28).ToString().Trim().StartsWith("밀양") ? "이천1물류센터" : dr.Field<string>(28).ToString().Trim(),
+                            rutenm = dr.Field<string>(28).ToString().Trim().StartsWith("광주") || dr.Field<string>(28).ToString().Trim().StartsWith("왜관") || dr.Field<string>(28).ToString().Trim().StartsWith("밀양") ? "이천1물류센터" : dr.Field<string>(28).ToString().Trim(),
+                            wavecd = View.Wavecd,
                             lbbrcd = string.Format("{0}:{1}", dr.Field<string>(35).ToString().Trim(), Convert.ToString(dr.Field<object>(24)).ToString().Trim()),
                             dlvycd = Convert.ToString(dr.Field<object>(25)).ToString().Trim(),
                             dlvynm = dr.Field<string>(26).ToString().Trim(),
                             prodcd = dr.Field<string>(9).ToString().Trim(),
                             prodnm = dr.Field<string>(10),
                             ordqty = dr.Field<object>(24), //숫자로?
+                            attrb1 = dr.Field<string>(28).ToString().Trim(),
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
@@ -156,6 +171,8 @@ namespace BarcodeInspection.Presenters
 
         /// <summary>
         /// CJ프레시웨이
+        /// 수원이라는 단어가 들어 간것은 수원물류센터 2620
+        /// 나머지는 전부 이천물류센터 2600
         /// </summary>
         /// <param name="dt"></param>
         /// <param name="customer"></param>
@@ -171,14 +188,18 @@ namespace BarcodeInspection.Presenters
                             rqshpd = dr.Field<object>(12),
                             dlwrky = View.Customer,
                             dlwrnm = "CJ프레시웨이",
-                            ruteky = dr.Field<string>(0).ToString().Trim().Substring(0, 4),
-                            rutenm = dr.Field<string>(0).ToString().Trim().Substring(7),
+                            //ruteky = dr.Field<string>(0).ToString().Trim().Substring(0, 4),
+                            //rutenm = dr.Field<string>(0).ToString().Trim().Substring(7),
+                            ruteky = dr.Field<string>(0).ToString().Trim().Substring(7).StartsWith("수원") ? "2620" : "2600",
+                            rutenm = dr.Field<string>(0).ToString().Trim().Substring(7).StartsWith("수원") ? "수원물류센터" : "이천물류센터",
+                            wavecd = View.Wavecd,
                             lbbrcd = dr.Field<string>(13).ToString().Trim(),
                             dlvycd = dr.Field<string>(3).ToString().Trim(),
                             dlvynm = dr.Field<string>(3).ToString().Trim(),
                             prodcd = dr.Field<string>(1).ToString().Trim(),
                             prodnm = dr.Field<string>(2),
                             ordqty = dr.Field<object>(6), //숫자로?
+                            attrb1 = dr.Field<string>(0).ToString().Trim(),
                             status = "N"
                         };
             return CustomLINQtoDataSetMethods.CopyToDataTable(query);
@@ -234,6 +255,10 @@ namespace BarcodeInspection.Presenters
 
             //string jsonString = JsonConvert.SerializeObject(lst_param);
 
+            RqsphdSaved = new DateTime(1900, 1, 1);
+            CustomerSaved = string.Empty;
+            WaveSaved = string.Empty;
+
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
             requestDic.Add("UFN", "{? = call ufn_set_lobsc010(?, ?)}");  //함수 호출
             requestDic.Add("p_barcode_json", jsonString);
@@ -243,10 +268,17 @@ namespace BarcodeInspection.Presenters
 
             if (!responseResult.Equals("OK"))
             {
-                MessageBox.Show(responseResult);
+                MessageBox.Show(responseResult, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                //저장한 다음 아래 값이 변경되면 안됨.
+                RqsphdSaved = View.Rqshpd;
+                CustomerSaved = View.Customer;
+                WaveSaved = View.Wavecd;
+
+                MessageBox.Show("저장 성공", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 await Search();
             }
         }
@@ -258,13 +290,13 @@ namespace BarcodeInspection.Presenters
             Clear();
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
-            requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?, ?)}");  //함수 호출
+            requestDic.Add("UFN", "{? = call ufn_get_lobsc010(?, ?, ?, ?, ?, ?)}");  //함수 호출
             requestDic.Add("p_compky", "A001");     
             requestDic.Add("p_wareky", "10");
             requestDic.Add("p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd"));
             requestDic.Add("p_dlwrky", View.Customer);
+            requestDic.Add("p_wavecd", View.Wavecd);
             requestDic.Add("p_status", View.IsConfirm?"Y":"N");
-
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.GET, requestDic);
 
@@ -277,6 +309,10 @@ namespace BarcodeInspection.Presenters
                 Debug.WriteLine(dt.Rows.Count);
 
                 View.ExcelDataGridView.DataSource = dt;
+
+                RqsphdSaved = View.Rqshpd;
+                CustomerSaved = View.Customer;
+                WaveSaved = View.Wavecd;
             }
         }
 
@@ -295,17 +331,115 @@ namespace BarcodeInspection.Presenters
             }
         }
 
+        /// <summary>
+        /// 납품 요청일과, 고객사는 조회한 다음 변경되면 안됨.
+        /// </summary>
+        /// <returns></returns>
         public async Task Confirm()
         {
+            if(RqsphdSaved == new DateTime(1900, 1, 1))
+            {
+                return;
+            }
+
+            if(string.IsNullOrEmpty(CustomerSaved))
+            {
+                return;
+            }
+
+            if(RqsphdSaved.ToString("yyyy-MM-dd") != View.Rqshpd.ToString("yyyy-MM-dd"))
+            {
+                MessageBox.Show("납품일자가 변경됐습니다.");
+                return;
+            }
+
+            if (!CustomerSaved.Equals(View.Customer))
+            {
+                MessageBox.Show("납품센터가 변경됐습니다.");
+                return;
+            }
+
+            if (!WaveSaved.Equals(View.Wavecd))
+            {
+                MessageBox.Show("차수가 변경됐습니다.");
+                return;
+            }
+
             string responseResult = string.Empty;
 
-            Dictionary<string, string> requestDic = new Dictionary<string, string>();
-            requestDic.Add("UFN", "{? = call ufn_set_lobsc011(?, ?, ?, ?, ?)}");  //함수 호출
-            requestDic.Add("p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd"));
-            requestDic.Add("p_compky", "A001");
-            requestDic.Add("p_wareky", "10");
-            requestDic.Add("p_dlwrky", View.Customer);
-            requestDic.Add("p_userid", "90773532");
+            Dictionary<string, string> requestDic = new Dictionary<string, string>
+            {
+                { "UFN", "{? = call ufn_set_lobsc011(?, ?, ?, ?, ?, ?)}" },  //함수 호출
+                { "p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd") },
+                { "p_compky", "A001" },
+                { "p_wareky", "10" },
+                { "p_dlwrky", View.Customer },
+                { "p_wavecd", View.Wavecd },
+                { "p_userid", "90773532" }
+            };
+
+            responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.SET, requestDic);
+
+            if (!responseResult.Equals("OK"))
+            {
+                MessageBox.Show(responseResult, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("확정 성공", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                await Search();
+            }
+        }
+
+
+        public async Task Delete()
+        {
+            if (RqsphdSaved == new DateTime(1900, 1, 1))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(CustomerSaved))
+            {
+                return;
+            }
+
+
+            if (!RqsphdSaved.ToString("yyyy-MM-dd").Equals(View.Rqshpd.ToString("yyyy-MM-dd")))
+            {
+                MessageBox.Show("납품 일자가 변경됐습니다.");
+                //return Task.FromResult<string>("저장했던 날짜가 변경됐습니다.");
+                return;
+            }
+
+            if (!CustomerSaved.Equals(View.Customer))
+            {
+                MessageBox.Show("납품 센터가 변경됐습니다.");
+                //return Task.FromResult<string>("저장했던 날짜가 변경됐습니다.");
+                return;
+            }
+
+            if (!WaveSaved.Equals(View.Wavecd))
+            {
+                MessageBox.Show("차수가 변경됐습니다.");
+                return;
+            }
+
+            //ToDo
+
+            string responseResult = string.Empty;
+
+            Dictionary<string, string> requestDic = new Dictionary<string, string>
+            {
+                { "UFN", "{? = call ufn_set_lobsc012(?, ?, ?, ?, ?, ?)}" },  //함수 호출
+                { "p_rqshpd", View.Rqshpd.ToString("yyyy-MM-dd") },
+                { "p_compky", "A001" },
+                { "p_wareky", "10" },
+                { "p_dlwrky", View.Customer },
+                { "p_wavecd", View.Wavecd },
+                { "p_userid", "90773532" }
+            };
 
             responseResult = await BaseHttpService.Instance.SendRequestAsync(HttpCommand.SET, requestDic);
 
@@ -315,6 +449,7 @@ namespace BarcodeInspection.Presenters
             }
             else
             {
+                MessageBox.Show("삭제 성공", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 await Search();
             }
         }

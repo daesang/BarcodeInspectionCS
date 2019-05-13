@@ -28,33 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.compky = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wareky = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rqshpd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlwrky = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlwrnm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ruteky = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rutenm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbbrcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlvycd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlvynm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prodnm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ordqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,6 +50,23 @@
             this.radioButtonConfirm = new System.Windows.Forms.RadioButton();
             this.radioButtonUnConfirm = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboWave = new System.Windows.Forms.ComboBox();
+            this.compky = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wareky = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rqshpd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlwrky = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlwrnm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ruteky = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rutenm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wavecd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbbrcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlvycd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlvynm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prodcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prodnm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordqty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +87,7 @@
             this.dlwrnm,
             this.ruteky,
             this.rutenm,
+            this.wavecd,
             this.lbbrcd,
             this.dlvycd,
             this.dlvynm,
@@ -94,138 +99,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1029, 596);
+            this.dataGridView1.Size = new System.Drawing.Size(1027, 596);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
-            // 
-            // compky
-            // 
-            this.compky.DataPropertyName = "compky";
-            this.compky.HeaderText = "compky";
-            this.compky.Name = "compky";
-            this.compky.ReadOnly = true;
-            this.compky.Visible = false;
-            // 
-            // wareky
-            // 
-            this.wareky.DataPropertyName = "wareky";
-            this.wareky.HeaderText = "wareky";
-            this.wareky.Name = "wareky";
-            this.wareky.ReadOnly = true;
-            this.wareky.Visible = false;
-            // 
-            // rqshpd
-            // 
-            this.rqshpd.DataPropertyName = "rqshpd";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.Format = "yyyy-MM-dd";
-            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle13;
-            this.rqshpd.HeaderText = "납품요청일";
-            this.rqshpd.Name = "rqshpd";
-            this.rqshpd.ReadOnly = true;
-            // 
-            // dlwrky
-            // 
-            this.dlwrky.DataPropertyName = "dlwrky";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dlwrky.HeaderText = "납품센터코드";
-            this.dlwrky.Name = "dlwrky";
-            this.dlwrky.ReadOnly = true;
-            // 
-            // dlwrnm
-            // 
-            this.dlwrnm.DataPropertyName = "dlwrnm";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dlwrnm.HeaderText = "납품센터명";
-            this.dlwrnm.Name = "dlwrnm";
-            this.dlwrnm.ReadOnly = true;
-            // 
-            // ruteky
-            // 
-            this.ruteky.DataPropertyName = "ruteky";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ruteky.DefaultCellStyle = dataGridViewCellStyle16;
-            this.ruteky.HeaderText = "배차코드";
-            this.ruteky.Name = "ruteky";
-            this.ruteky.ReadOnly = true;
-            // 
-            // rutenm
-            // 
-            this.rutenm.DataPropertyName = "rutenm";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.rutenm.DefaultCellStyle = dataGridViewCellStyle17;
-            this.rutenm.HeaderText = "배차명";
-            this.rutenm.Name = "rutenm";
-            this.rutenm.ReadOnly = true;
-            // 
-            // lbbrcd
-            // 
-            this.lbbrcd.DataPropertyName = "lbbrcd";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle18;
-            this.lbbrcd.HeaderText = "라벨바코드";
-            this.lbbrcd.Name = "lbbrcd";
-            this.lbbrcd.ReadOnly = true;
-            this.lbbrcd.Width = 180;
-            // 
-            // dlvycd
-            // 
-            this.dlvycd.DataPropertyName = "dlvycd";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dlvycd.HeaderText = "매출처코드";
-            this.dlvycd.Name = "dlvycd";
-            this.dlvycd.ReadOnly = true;
-            // 
-            // dlvynm
-            // 
-            this.dlvynm.DataPropertyName = "dlvynm";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dlvynm.HeaderText = "매출처명";
-            this.dlvynm.Name = "dlvynm";
-            this.dlvynm.ReadOnly = true;
-            this.dlvynm.Width = 120;
-            // 
-            // prodcd
-            // 
-            this.prodcd.DataPropertyName = "prodcd";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.prodcd.DefaultCellStyle = dataGridViewCellStyle21;
-            this.prodcd.HeaderText = "상품코드";
-            this.prodcd.Name = "prodcd";
-            this.prodcd.ReadOnly = true;
-            // 
-            // prodnm
-            // 
-            this.prodnm.DataPropertyName = "prodnm";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.NullValue = null;
-            this.prodnm.DefaultCellStyle = dataGridViewCellStyle22;
-            this.prodnm.HeaderText = "상품명";
-            this.prodnm.Name = "prodnm";
-            this.prodnm.ReadOnly = true;
-            this.prodnm.Width = 150;
-            // 
-            // ordqty
-            // 
-            this.ordqty.DataPropertyName = "ordqty";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ordqty.DefaultCellStyle = dataGridViewCellStyle23;
-            this.ordqty.HeaderText = "수량";
-            this.ordqty.Name = "ordqty";
-            this.ordqty.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.DataPropertyName = "status";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.status.DefaultCellStyle = dataGridViewCellStyle24;
-            this.status.HeaderText = "처리";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
             // 
             // cboCustomer
             // 
@@ -270,7 +146,7 @@
             // 
             this.groupBox1.Controls.Add(this.radioButtonConfirm);
             this.groupBox1.Controls.Add(this.radioButtonUnConfirm);
-            this.groupBox1.Location = new System.Drawing.Point(615, 2);
+            this.groupBox1.Location = new System.Drawing.Point(816, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(174, 34);
             this.groupBox1.TabIndex = 14;
@@ -280,7 +156,7 @@
             // 
             this.radioButtonConfirm.AutoSize = true;
             this.radioButtonConfirm.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.radioButtonConfirm.Location = new System.Drawing.Point(107, 13);
+            this.radioButtonConfirm.Location = new System.Drawing.Point(108, 13);
             this.radioButtonConfirm.Name = "radioButtonConfirm";
             this.radioButtonConfirm.Size = new System.Drawing.Size(58, 20);
             this.radioButtonConfirm.TabIndex = 1;
@@ -292,7 +168,7 @@
             this.radioButtonUnConfirm.AutoSize = true;
             this.radioButtonUnConfirm.Checked = true;
             this.radioButtonUnConfirm.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.radioButtonUnConfirm.Location = new System.Drawing.Point(12, 12);
+            this.radioButtonUnConfirm.Location = new System.Drawing.Point(13, 12);
             this.radioButtonUnConfirm.Name = "radioButtonUnConfirm";
             this.radioButtonUnConfirm.Size = new System.Drawing.Size(74, 20);
             this.radioButtonUnConfirm.TabIndex = 0;
@@ -304,17 +180,179 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(540, 15);
+            this.label3.Location = new System.Drawing.Point(740, 15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 15;
             this.label3.Text = "전표처리";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(533, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 16);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "차수구분";
+            // 
+            // cboWave
+            // 
+            this.cboWave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWave.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cboWave.FormattingEnabled = true;
+            this.cboWave.Location = new System.Drawing.Point(611, 10);
+            this.cboWave.Name = "cboWave";
+            this.cboWave.Size = new System.Drawing.Size(114, 24);
+            this.cboWave.TabIndex = 17;
+            // 
+            // compky
+            // 
+            this.compky.DataPropertyName = "compky";
+            this.compky.HeaderText = "compky";
+            this.compky.Name = "compky";
+            this.compky.ReadOnly = true;
+            this.compky.Visible = false;
+            // 
+            // wareky
+            // 
+            this.wareky.DataPropertyName = "wareky";
+            this.wareky.HeaderText = "wareky";
+            this.wareky.Name = "wareky";
+            this.wareky.ReadOnly = true;
+            this.wareky.Visible = false;
+            // 
+            // rqshpd
+            // 
+            this.rqshpd.DataPropertyName = "rqshpd";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd";
+            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle1;
+            this.rqshpd.HeaderText = "납품요청일";
+            this.rqshpd.Name = "rqshpd";
+            this.rqshpd.ReadOnly = true;
+            // 
+            // dlwrky
+            // 
+            this.dlwrky.DataPropertyName = "dlwrky";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dlwrky.HeaderText = "납품센터코드";
+            this.dlwrky.Name = "dlwrky";
+            this.dlwrky.ReadOnly = true;
+            // 
+            // dlwrnm
+            // 
+            this.dlwrnm.DataPropertyName = "dlwrnm";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dlwrnm.FillWeight = 150F;
+            this.dlwrnm.HeaderText = "납품센터명";
+            this.dlwrnm.Name = "dlwrnm";
+            this.dlwrnm.ReadOnly = true;
+            this.dlwrnm.Width = 150;
+            // 
+            // ruteky
+            // 
+            this.ruteky.DataPropertyName = "ruteky";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ruteky.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ruteky.HeaderText = "배차코드";
+            this.ruteky.Name = "ruteky";
+            this.ruteky.ReadOnly = true;
+            // 
+            // rutenm
+            // 
+            this.rutenm.DataPropertyName = "rutenm";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.rutenm.DefaultCellStyle = dataGridViewCellStyle5;
+            this.rutenm.HeaderText = "배차명";
+            this.rutenm.Name = "rutenm";
+            this.rutenm.ReadOnly = true;
+            // 
+            // wavecd
+            // 
+            this.wavecd.DataPropertyName = "wavecd";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.wavecd.DefaultCellStyle = dataGridViewCellStyle6;
+            this.wavecd.HeaderText = "차수구분";
+            this.wavecd.Name = "wavecd";
+            this.wavecd.ReadOnly = true;
+            // 
+            // lbbrcd
+            // 
+            this.lbbrcd.DataPropertyName = "lbbrcd";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle7;
+            this.lbbrcd.HeaderText = "라벨바코드";
+            this.lbbrcd.Name = "lbbrcd";
+            this.lbbrcd.ReadOnly = true;
+            this.lbbrcd.Width = 180;
+            // 
+            // dlvycd
+            // 
+            this.dlvycd.DataPropertyName = "dlvycd";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dlvycd.HeaderText = "매출처코드";
+            this.dlvycd.Name = "dlvycd";
+            this.dlvycd.ReadOnly = true;
+            // 
+            // dlvynm
+            // 
+            this.dlvynm.DataPropertyName = "dlvynm";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dlvynm.HeaderText = "매출처명";
+            this.dlvynm.Name = "dlvynm";
+            this.dlvynm.ReadOnly = true;
+            this.dlvynm.Width = 120;
+            // 
+            // prodcd
+            // 
+            this.prodcd.DataPropertyName = "prodcd";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.prodcd.DefaultCellStyle = dataGridViewCellStyle10;
+            this.prodcd.HeaderText = "상품코드";
+            this.prodcd.Name = "prodcd";
+            this.prodcd.ReadOnly = true;
+            // 
+            // prodnm
+            // 
+            this.prodnm.DataPropertyName = "prodnm";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.NullValue = null;
+            this.prodnm.DefaultCellStyle = dataGridViewCellStyle11;
+            this.prodnm.HeaderText = "상품명";
+            this.prodnm.Name = "prodnm";
+            this.prodnm.ReadOnly = true;
+            this.prodnm.Width = 150;
+            // 
+            // ordqty
+            // 
+            this.ordqty.DataPropertyName = "ordqty";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ordqty.DefaultCellStyle = dataGridViewCellStyle12;
+            this.ordqty.HeaderText = "수량";
+            this.ordqty.Name = "ordqty";
+            this.ordqty.ReadOnly = true;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.status.DefaultCellStyle = dataGridViewCellStyle13;
+            this.status.HeaderText = "처리";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            // 
             // LOBSC010
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 650);
+            this.ClientSize = new System.Drawing.Size(1051, 650);
+            this.Controls.Add(this.cboWave);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dateTimePicker1);
@@ -341,6 +379,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonConfirm;
+        private System.Windows.Forms.RadioButton radioButtonUnConfirm;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboWave;
         private System.Windows.Forms.DataGridViewTextBoxColumn compky;
         private System.Windows.Forms.DataGridViewTextBoxColumn wareky;
         private System.Windows.Forms.DataGridViewTextBoxColumn rqshpd;
@@ -348,6 +392,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dlwrnm;
         private System.Windows.Forms.DataGridViewTextBoxColumn ruteky;
         private System.Windows.Forms.DataGridViewTextBoxColumn rutenm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wavecd;
         private System.Windows.Forms.DataGridViewTextBoxColumn lbbrcd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlvycd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlvynm;
@@ -355,9 +400,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn prodnm;
         private System.Windows.Forms.DataGridViewTextBoxColumn ordqty;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButtonConfirm;
-        private System.Windows.Forms.RadioButton radioButtonUnConfirm;
-        private System.Windows.Forms.Label label3;
     }
 }

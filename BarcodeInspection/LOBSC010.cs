@@ -32,6 +32,8 @@ namespace BarcodeInspection
 
         public DataGridView ExcelDataGridView => this.dataGridView1;
 
+        public string Wavecd => this.cboWave.SelectedValue.ToString();
+
         private DataTable _excelDataTable = new DataTable();
 
         public LOBSC010()
@@ -85,6 +87,36 @@ namespace BarcodeInspection
             this.cboCustomer.DisplayMember="Name";
             this.cboCustomer.SelectedIndex=0;
 
+            DataTable dt2 = new DataTable();
+            DataRow row2 = null;
+            dt2.Columns.Add(new DataColumn("Code", typeof(string)));
+            dt2.Columns.Add(new DataColumn("Name", typeof(string)));
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "0";
+            row2["Name"] = "전체";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "1";
+            row2["Name"] = "1차(Wave)";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "2";
+            row2["Name"] = "2차(Wave)";
+            dt2.Rows.Add(row2);
+
+            row2 = dt2.NewRow();
+            row2["Code"] = "3";
+            row2["Name"] = "3차(Wave)";
+            dt2.Rows.Add(row2);
+
+            this.cboWave.DataSource=dt2;
+            this.cboWave.ValueMember="Code";
+            this.cboWave.DisplayMember="Name";
+            this.cboWave.SelectedIndex=0;
+
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -109,6 +141,57 @@ namespace BarcodeInspection
             {
                 return;
             }
+
+            //Console.WriteLine(fileName);
+
+            if(string.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+
+            //1차라벨
+            //Console.WriteLine(fileName.Substring(fileName.Length - 9, 4));
+            string tmp = string.Empty;
+            try
+            {
+                //삼성웰스토리만 해당함.
+                if (cboCustomer.SelectedIndex == 0 || cboCustomer.SelectedIndex == 1)
+                {
+                    if (fileName.Length >= 9)
+                    {
+                        tmp = fileName.Substring(fileName.Length - 9, 4);
+
+                        if (tmp.StartsWith("1차"))
+                        {
+                            this.cboWave.SelectedIndex = 1;
+                        }
+                        else if (tmp.StartsWith("2차"))
+                        {
+                            this.cboWave.SelectedIndex = 2;
+                        }
+                        else if (tmp.StartsWith("3차"))
+                        {
+                            this.cboWave.SelectedIndex = 3;
+                        }
+                        else
+                        {
+                            this.cboWave.SelectedIndex = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    if(this.cboWave.SelectedIndex == 0 )
+                    {
+                        this.cboWave.SelectedIndex = 1;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
 
 
             try
@@ -176,7 +259,7 @@ namespace BarcodeInspection
         {
             if (radioButtonConfirm.Checked)
             {
-                MessageBox.Show("확정상태에서는 저장 할 수 없습니다.");
+                MessageBox.Show("확정상태에서는 저장 할 수 없습니다.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -244,12 +327,22 @@ namespace BarcodeInspection
             
             if(radioButtonConfirm.Checked)
             {
-                MessageBox.Show("확정상태에서는 확정 할 수 없습니다.");
+                MessageBox.Show("확정상태에서는 확정 할 수 없습니다.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             await _presenter.Confirm();
         }
 
+        async Task ITopButton.Delete()
+        {
+            //if (radioButtonConfirm.Checked)
+            //{
+            //    MessageBox.Show("확정상태에서는 삭제 할 수 없습니다.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+
+            await _presenter.Delete();
+        }
     }
 }

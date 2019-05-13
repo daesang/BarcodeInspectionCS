@@ -16,6 +16,7 @@ namespace BarcodeInspection.Common
         PRINT,
         CLOSE,
         CLEAR,
-        EXIT
+        EXIT,
+        DELETE
     }
 }

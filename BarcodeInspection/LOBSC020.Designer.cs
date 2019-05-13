@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cboWave = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.slipno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.compky = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wareky = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +55,7 @@
             this.dlwrnm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ruteky = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rutenm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wavecd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbbrcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dlvycd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dlvynm = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -121,6 +125,7 @@
             this.dlwrnm,
             this.ruteky,
             this.rutenm,
+            this.wavecd,
             this.lbbrcd,
             this.dlvycd,
             this.dlvynm,
@@ -138,6 +143,26 @@
             this.dataGridView1.Size = new System.Drawing.Size(1074, 627);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
+            // 
+            // cboWave
+            // 
+            this.cboWave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWave.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cboWave.FormattingEnabled = true;
+            this.cboWave.Location = new System.Drawing.Point(614, 9);
+            this.cboWave.Name = "cboWave";
+            this.cboWave.Size = new System.Drawing.Size(100, 24);
+            this.cboWave.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(536, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 16);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "차수구분";
             // 
             // slipno
             // 
@@ -165,9 +190,9 @@
             // rqshpd
             // 
             this.rqshpd.DataPropertyName = "rqshpd";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.Format = "yyyy-MM-dd";
-            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd";
+            this.rqshpd.DefaultCellStyle = dataGridViewCellStyle1;
             this.rqshpd.HeaderText = "납품요청일";
             this.rqshpd.Name = "rqshpd";
             this.rqshpd.ReadOnly = true;
@@ -175,8 +200,8 @@
             // dlwrky
             // 
             this.dlwrky.DataPropertyName = "dlwrky";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrky.DefaultCellStyle = dataGridViewCellStyle2;
             this.dlwrky.HeaderText = "납품센터코드";
             this.dlwrky.Name = "dlwrky";
             this.dlwrky.ReadOnly = true;
@@ -184,8 +209,8 @@
             // dlwrnm
             // 
             this.dlwrnm.DataPropertyName = "dlwrnm";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlwrnm.DefaultCellStyle = dataGridViewCellStyle3;
             this.dlwrnm.HeaderText = "납품센터명";
             this.dlwrnm.Name = "dlwrnm";
             this.dlwrnm.ReadOnly = true;
@@ -193,8 +218,8 @@
             // ruteky
             // 
             this.ruteky.DataPropertyName = "ruteky";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ruteky.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ruteky.DefaultCellStyle = dataGridViewCellStyle4;
             this.ruteky.HeaderText = "배차코드";
             this.ruteky.Name = "ruteky";
             this.ruteky.ReadOnly = true;
@@ -202,17 +227,26 @@
             // rutenm
             // 
             this.rutenm.DataPropertyName = "rutenm";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.rutenm.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.rutenm.DefaultCellStyle = dataGridViewCellStyle5;
             this.rutenm.HeaderText = "배차명";
             this.rutenm.Name = "rutenm";
             this.rutenm.ReadOnly = true;
             // 
+            // wavecd
+            // 
+            this.wavecd.DataPropertyName = "wavecd";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.wavecd.DefaultCellStyle = dataGridViewCellStyle6;
+            this.wavecd.HeaderText = "차수구분";
+            this.wavecd.Name = "wavecd";
+            this.wavecd.ReadOnly = true;
+            // 
             // lbbrcd
             // 
             this.lbbrcd.DataPropertyName = "lbbrcd";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lbbrcd.DefaultCellStyle = dataGridViewCellStyle7;
             this.lbbrcd.HeaderText = "라벨바코드";
             this.lbbrcd.Name = "lbbrcd";
             this.lbbrcd.ReadOnly = true;
@@ -221,8 +255,8 @@
             // dlvycd
             // 
             this.dlvycd.DataPropertyName = "dlvycd";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvycd.DefaultCellStyle = dataGridViewCellStyle8;
             this.dlvycd.HeaderText = "매출처코드";
             this.dlvycd.Name = "dlvycd";
             this.dlvycd.ReadOnly = true;
@@ -230,8 +264,8 @@
             // dlvynm
             // 
             this.dlvynm.DataPropertyName = "dlvynm";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dlvynm.DefaultCellStyle = dataGridViewCellStyle9;
             this.dlvynm.HeaderText = "매출처명";
             this.dlvynm.Name = "dlvynm";
             this.dlvynm.ReadOnly = true;
@@ -240,8 +274,8 @@
             // prodcd
             // 
             this.prodcd.DataPropertyName = "prodcd";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.prodcd.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.prodcd.DefaultCellStyle = dataGridViewCellStyle10;
             this.prodcd.HeaderText = "상품코드";
             this.prodcd.Name = "prodcd";
             this.prodcd.ReadOnly = true;
@@ -249,9 +283,9 @@
             // prodnm
             // 
             this.prodnm.DataPropertyName = "prodnm";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.NullValue = null;
-            this.prodnm.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.NullValue = null;
+            this.prodnm.DefaultCellStyle = dataGridViewCellStyle11;
             this.prodnm.HeaderText = "상품명";
             this.prodnm.Name = "prodnm";
             this.prodnm.ReadOnly = true;
@@ -260,8 +294,8 @@
             // ordqty
             // 
             this.ordqty.DataPropertyName = "ordqty";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ordqty.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ordqty.DefaultCellStyle = dataGridViewCellStyle12;
             this.ordqty.HeaderText = "수량";
             this.ordqty.Name = "ordqty";
             this.ordqty.ReadOnly = true;
@@ -299,6 +333,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 678);
+            this.Controls.Add(this.cboWave);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
@@ -320,6 +356,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboCustomer;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cboWave;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn slipno;
         private System.Windows.Forms.DataGridViewTextBoxColumn compky;
         private System.Windows.Forms.DataGridViewTextBoxColumn wareky;
@@ -328,6 +366,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dlwrnm;
         private System.Windows.Forms.DataGridViewTextBoxColumn ruteky;
         private System.Windows.Forms.DataGridViewTextBoxColumn rutenm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wavecd;
         private System.Windows.Forms.DataGridViewTextBoxColumn lbbrcd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlvycd;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlvynm;

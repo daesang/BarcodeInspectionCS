@@ -395,6 +395,12 @@ namespace BarcodeInspection.Presenters
 
         public async Task Delete()
         {
+
+            if (true)
+            {
+                return;
+            }
+
             if (RqsphdSaved == new DateTime(1900, 1, 1))
             {
                 return;

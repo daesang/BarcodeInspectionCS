@@ -18,7 +18,7 @@ namespace BarcodeInspection
         public GlobalSetting()
         {
 #if DEBUG
-            //DefaultEndpoint = "http://172.28.200.235:8080"; //로컬은 8080사용
+            //DefaultEndpoint = "http://172.34.34.144:8080"; //로컬은 8080사용
             DefaultEndpoint = "http://192.168.29.4"; //내부에서 접속
 #endif
             //AuthToken = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", string.Empty).ToString();

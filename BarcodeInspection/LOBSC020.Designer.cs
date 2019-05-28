@@ -45,8 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cboWave = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.slipno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.compky = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wareky = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +64,8 @@
             this.pickingUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shipTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shipUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboWave = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,29 +140,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1074, 627);
+            this.dataGridView1.Size = new System.Drawing.Size(996, 627);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
-            // 
-            // cboWave
-            // 
-            this.cboWave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboWave.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cboWave.FormattingEnabled = true;
-            this.cboWave.Location = new System.Drawing.Point(614, 9);
-            this.cboWave.Name = "cboWave";
-            this.cboWave.Size = new System.Drawing.Size(100, 24);
-            this.cboWave.TabIndex = 20;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(536, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 16);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "차수구분";
             // 
             // slipno
             // 
@@ -328,11 +308,31 @@
             this.shipUser.Name = "shipUser";
             this.shipUser.ReadOnly = true;
             // 
+            // cboWave
+            // 
+            this.cboWave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWave.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cboWave.FormattingEnabled = true;
+            this.cboWave.Location = new System.Drawing.Point(614, 9);
+            this.cboWave.Name = "cboWave";
+            this.cboWave.Size = new System.Drawing.Size(100, 24);
+            this.cboWave.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(536, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 16);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "차수구분";
+            // 
             // LOBSC020
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 678);
+            this.ClientSize = new System.Drawing.Size(1020, 678);
             this.Controls.Add(this.cboWave);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);

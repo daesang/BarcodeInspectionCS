@@ -1,4 +1,5 @@
 ﻿using BarcodeInspection.Helper;
+using BarcodeInspection.Models;
 using BarcodeInspection.Services;
 using BarcodeInspection.Views;
 using Newtonsoft.Json;
@@ -157,7 +158,8 @@ namespace BarcodeInspection.Presenters
                             ruteky = dr.Field<string>(28).ToString().Trim().StartsWith("광주") || dr.Field<string>(28).ToString().Trim().StartsWith("왜관") || dr.Field<string>(28).ToString().Trim().StartsWith("밀양") ? "이천1물류센터" : dr.Field<string>(28).ToString().Trim(),
                             rutenm = dr.Field<string>(28).ToString().Trim().StartsWith("광주") || dr.Field<string>(28).ToString().Trim().StartsWith("왜관") || dr.Field<string>(28).ToString().Trim().StartsWith("밀양") ? "이천1물류센터" : dr.Field<string>(28).ToString().Trim(),
                             wavecd = View.Wavecd,
-                            lbbrcd = string.Format("{0}:{1}", dr.Field<string>(35).ToString().Trim(), Convert.ToString(dr.Field<object>(24)).ToString().Trim()),
+                            //lbbrcd = string.Format("{0}:{1}", dr.Field<string>(35).ToString().Trim(), Convert.ToString(dr.Field<object>(24)).ToString().Trim()),
+                            lbbrcd = dr.Field<string>(35).ToString().Trim(),
                             dlvycd = Convert.ToString(dr.Field<object>(25)).ToString().Trim(),
                             dlvynm = dr.Field<string>(26).ToString().Trim(),
                             prodcd = dr.Field<string>(9).ToString().Trim(),
@@ -230,29 +232,28 @@ namespace BarcodeInspection.Presenters
             string jsonString = JsonConvert.SerializeObject((View.ExcelDataGridView.DataSource as DataTable));
 
             //List<Lobsps1Model> lst_param = new List<Lobsps1Model>();
-            //for (int i = 0; i < 1; i++)
+            //for (int i = 0; i < View.ExcelDataGridView.Rows.Count; i++)
             //{
             //    lst_param.Add
             //    (
             //        new Lobsps1Model
             //        {
-            //            Compky = dt.Rows[i]["compky"].ToString(),
-            //            Wareky = dt.Rows[i]["wareky"].ToString(),
-            //            Rqshpd = Convert.ToDateTime(dt.Rows[i]["rqshpd"].ToString()),
-            //            Dlwrky = dt.Rows[i]["dlwrky"].ToString(),
-            //            Dlwrnm = dt.Rows[i]["dlwrnm"].ToString(),
-            //            Ruteky = dt.Rows[i]["ruteky"].ToString(),
-            //            Rutenm = dt.Rows[i]["rutenm"].ToString(),
-            //            Lbbrcd = dt.Rows[i]["lbbrcd"].ToString(),
-            //            Dlvycd = dt.Rows[i]["dlvycd"].ToString(),
-            //            Dlvynm = dt.Rows[i]["dlvynm"].ToString(),
-            //            Prodcd = dt.Rows[i]["prodcd"].ToString(),
-            //            Prodnm = dt.Rows[i]["prodnm"].ToString(),
-            //            Ordqty = Convert.ToDecimal(dt.Rows[i]["ordqty"].ToString())
+            //            Compky = View.ExcelDataGridView.Rows[i].Cells["compky"].ToString(),
+            //            Wareky = View.ExcelDataGridView.Rows[i].Cells["wareky"].ToString(),
+            //            Rqshpd = Convert.ToDateTime(View.ExcelDataGridView.Rows[i].Cells["rqshpd"].ToString()),
+            //            Dlwrky = View.ExcelDataGridView.Rows[i].Cells["dlwrky"].ToString(),
+            //            Dlwrnm = View.ExcelDataGridView.Rows[i].Cells["dlwrnm"].ToString(),
+            //            Ruteky = View.ExcelDataGridView.Rows[i].Cells["ruteky"].ToString(),
+            //            Rutenm = View.ExcelDataGridView.Rows[i].Cells["rutenm"].ToString(),
+            //            Lbbrcd = View.ExcelDataGridView.Rows[i].Cells["lbbrcd"].ToString(),
+            //            Dlvycd = View.ExcelDataGridView.Rows[i].Cells["dlvycd"].ToString(),
+            //            Dlvynm = View.ExcelDataGridView.Rows[i].Cells["dlvynm"].ToString(),
+            //            Prodcd = View.ExcelDataGridView.Rows[i].Cells["prodcd"].ToString(),
+            //            Prodnm = View.ExcelDataGridView.Rows[i].Cells["prodnm"].ToString(),
+            //            Ordqty = Convert.ToDecimal(View.ExcelDataGridView.Rows[i].Cells["ordqty"].ToString())
             //        }
             //    );
             //}
-
             //string jsonString = JsonConvert.SerializeObject(lst_param);
 
             RqsphdSaved = new DateTime(1900, 1, 1);
@@ -260,7 +261,14 @@ namespace BarcodeInspection.Presenters
             WaveSaved = string.Empty;
 
             Dictionary<string, string> requestDic = new Dictionary<string, string>();
-            requestDic.Add("UFN", "{? = call ufn_set_lobsc010(?, ?)}");  //함수 호출
+            if (View.Customer.Equals("1020"))
+            {
+                requestDic.Add("UFN", "{? = call ufn_set_lobsc013(?, ?)}"); //맑은식품-신세계
+            }
+            else
+            {
+                requestDic.Add("UFN", "{? = call ufn_set_lobsc010(?, ?)}");
+            }
             requestDic.Add("p_barcode_json", jsonString);
             requestDic.Add("p_userid", "90773532");
 

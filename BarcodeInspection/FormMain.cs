@@ -273,24 +273,41 @@ namespace BarcodeInspection
         }
 
 
-        private async void FormMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             this.Text = "Ver. " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            this.tabControl.Visible = false;
+
+            using (var form = new LoginView())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
 
             //ToDo 
             //로그인 테스트
 
-            var p = new LoginUser { Compky = "A001", Wareky = "10", Userid = "90773532", Passwd = "3532" };
+            /*
+            var p = new LoginUserModel { Compky = "A001", Wareky = "10", Userid = "90773532", Passwd = "3532" };
             string jsonString = JsonConvert.SerializeObject(p);
 
             string result = await BaseHttpService.Instance.AuthorizationAsync(jsonString);
 
-            LoginUser loginUser = JsonConvert.DeserializeObject<LoginUser>(result);
+            LoginUserModel loginUser = JsonConvert.DeserializeObject<LoginUserModel>(result);
             System.Diagnostics.Debug.WriteLine(loginUser.AuthToken);
 
             Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", loginUser.AuthToken);
 
             GlobalSetting.Instance.AuthToken = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "AuthToken", string.Empty).ToString();
+            */
+
         }
 
         private void toolStripBtnConfirm_Click(object sender, EventArgs e)

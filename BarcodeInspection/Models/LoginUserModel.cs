@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BarcodeInspection.Models
 {
-    public class LoginUser
+    public class LoginUserModel
     {
-        public LoginUser()
+        public LoginUserModel()
         {
 
         }

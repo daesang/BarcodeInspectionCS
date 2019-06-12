@@ -39,26 +39,28 @@ namespace BarcodeInspection
         {
             _presenter = new LoginPresenter(this);
 
-
             this.cboWarehouse.ValueMember = "Wareky";
             this.cboWarehouse.DisplayMember = "Warenm";
-
-            Task task = Task.Run(async () =>
-            {
-                this.cboWarehouse.DataSource = await this._presenter.SearchWarehouse();
-            });
-
-            task.Wait();
 
             if (!string.IsNullOrEmpty(Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Compky", string.Empty).ToString()))
             {
                 this.txtCompky.Text = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Compky", string.Empty).ToString();
             }
 
+            List<WarehouseModel> tmp = new List<WarehouseModel>();
+            Task task = Task.Run(async () =>
+            {
+                tmp = await this._presenter.SearchWarehouse();
+            });
+
+            task.Wait();
+
+            this.cboWarehouse.DataSource = tmp;
+
             if (!string.IsNullOrEmpty(Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Wareky", string.Empty).ToString()))
             {
                 GlobalSetting.Instance.Wareky = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Wareky", string.Empty).ToString();
-                cboWarehouse.SelectedValue = GlobalSetting.Instance.Wareky;
+                this.cboWarehouse.SelectedValue = GlobalSetting.Instance.Wareky;
             }
 
             if (!string.IsNullOrEmpty(Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Userid", string.Empty).ToString()))
@@ -67,23 +69,30 @@ namespace BarcodeInspection
             }
         }
 
-        private void buttonOK_Click(object sender, EventArgs e)
+        private async void buttonOK_Click(object sender, EventArgs e)
         {
-            this._presenter.Login();
+            if (await this._presenter.Login())
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("로그인 실패", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private async void txtCompky_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {
-                cboWarehouse.DataSource = await this._presenter.SearchWarehouse();
+                this.cboWarehouse.DataSource = await this._presenter.SearchWarehouse();
             }
         }
 
         private void cboWarehouse_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Wareky", this.cboWarehouse.SelectedValue.ToString());
-            GlobalSetting.Instance.Wareky = this.cboWarehouse.SelectedValue.ToString();
+            //Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\BarcodeInspection", "Wareky", this.cboWarehouse.SelectedValue.ToString());
+            //GlobalSetting.Instance.Wareky = this.cboWarehouse.SelectedValue.ToString();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
@@ -91,6 +100,30 @@ namespace BarcodeInspection
             if (e.KeyData == Keys.Enter)
             {
                 buttonOK.PerformClick();
+            }
+        }
+
+        private void txtUserId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                this.txtPassword.Focus();
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void LoginView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Console.WriteLine(".");
+
+            if(e.CloseReason == CloseReason.None)
+            {
+                e.Cancel = true;
             }
         }
     }
